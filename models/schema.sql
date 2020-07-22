@@ -29,7 +29,8 @@ CREATE TABLE projects
 (
 	id INT AUTO_INCREMENT NOT NULL,
 		PRIMARY KEY(id),
-	projectName VARCHAR(500) NOT NULL
+	project_name VARCHAR(500) NOT NULL,
+    project_description VARCHAR(2000) NULL
 );
 
 -- Lists all the languages used for a specific project
