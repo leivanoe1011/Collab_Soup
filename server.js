@@ -8,8 +8,11 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Middleware
-// this will allow us to parse Handlebars and JSON
+// Extended will allow our Request variable within our Routers
+// to access form inputs
 app.use(express.urlencoded({ extended: false }));
+
+// Middleware below allows the app to parse JSON
 app.use(express.json());
 
 // The Middleware below will begin reading the files from the 
