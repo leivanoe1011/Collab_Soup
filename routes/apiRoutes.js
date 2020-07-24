@@ -1,24 +1,29 @@
+
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
+    // Get all Users
+    app.get("/api/user/:email", function(req, res){
+        
+        var userEmail = req.params.email;
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+        db.users.findAll({
+            where: {
+                email: userEmail
+            }
+        }).then(function(dbUser){
+            res.json(dbUser);
+        });
+        // End of Then
     });
-  });
+    // End of get by Email
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-};
+    app.post("/api/user", function(req, res){
+        var newUser = req.body;
+
+        db.users.create(newUser). then(function(dbUser){
+            res.json(dbUser);
+        })
+    })
+}
+

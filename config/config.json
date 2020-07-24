@@ -2,14 +2,14 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "exampledb",
+    "database": "collab_soup_DB",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "password",
-    "database": "testdb",
+    "database": "collab_soup_DB",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false
