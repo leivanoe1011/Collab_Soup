@@ -7,7 +7,7 @@ module.exports = function(app) {
         
         var userEmail = req.params.email;
 
-        db.users.findAll({
+        db.User.findAll({
             where: {
                 email: userEmail
             }
@@ -19,9 +19,13 @@ module.exports = function(app) {
     // End of get by Email
 
     app.post("/api/user", function(req, res){
+        
+        console.log("In api post");
+
         var newUser = req.body;
 
-        db.users.create(newUser). then(function(dbUser){
+        console.log(newUser);
+        db.User.create(newUser). then(function(dbUser){
             res.json(dbUser);
         })
     })

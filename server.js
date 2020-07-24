@@ -30,6 +30,8 @@ app.set("view engine", "handlebars");
 
 // Routes
 require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
+
 
 // This will give us the option to restructure our Database based
 // ON changes to the Sequelizer
@@ -55,3 +57,4 @@ db.sequelize.sync(syncOptions).then(function () {
 });
 
 module.exports = app;
+
