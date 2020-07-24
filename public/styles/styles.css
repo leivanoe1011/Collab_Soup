@@ -1,3 +1,27 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+.main-section{
+  background: white;
+
+}
+
+.footerSection{
+  background: red;
+}
+
+.navbar{
+  background: red;
+}
+
+.landing-img{
+  margin-top: -100px;
+}
+
+
+
+
+.background{
+  background: transparent
+}
