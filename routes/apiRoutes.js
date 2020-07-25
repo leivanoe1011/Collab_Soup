@@ -7,11 +7,7 @@ module.exports = function(app) {
         
         var userEmail = req.params.email;
 
-        db.User.findAll({
-            where: {
-                email: userEmail
-            }
-        }).then(function(dbUser){
+        db.User.findAll({ where: { email: userEmail } }).then(function(dbUser){
             res.json(dbUser);
         });
         // End of Then
@@ -58,11 +54,7 @@ module.exports = function(app) {
        
         var userId = req.params.id;
        
-        db.User_language.findAll({
-            where: {
-                user_id: userId
-            }
-        }).then(function(userLang){
+        db.User_language.findAll({ where: { user_id: userId } }).then(function(userLang){
             res.json(userLang);
         });
     });
@@ -70,22 +62,14 @@ module.exports = function(app) {
     app.get("/api/projLanguage/:id", function(req, res){
 
         var projectId = req.params.id;
-        db.Project_language.findAll({
-            where: {
-                project_id: projectId
-            }
-        }).then(function(projLang){
+        db.Project_language.findAll({ where: {project_id: projectId} } ).then(function(projLang){
             res.json(projLang);
         })
     });
 
     app.get("/api/project/:id", function(req, res){
         var projectId = req.params.id;
-        db.Project.findAll({
-            where: {
-                id: projectId
-            }
-        }).then(function(dbProject){
+        db.Project.findAll({ where: { id: projectId } }).then(function(dbProject){
             res.json(dbProject);
         })
     })
