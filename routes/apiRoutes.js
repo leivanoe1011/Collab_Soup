@@ -3,16 +3,41 @@ var db = require("../models");
 
 module.exports = function(app) {
     // Get all Users
-    app.get("/api/user/:email", function(req, res){
+    app.post("/api/userByEmail", function(req, res){
         
-        var userEmail = req.params.email;
+        var userEmail = req.body.email;
+
+        // var userEmail = null;
+
+        if(userEmail === ""){
+            // It will quit
+            res.status(404).send("Not Found");
+        }
+
+        console.log("In api user");
+        console.log(userEmail);
 
         db.User.findAll({ where: { email: userEmail } }).then(function(dbUser){
             res.json(dbUser);
         });
         // End of Then
+
+
     });
     // End of get by Email
+
+    app.get("/api/userById/:id", function(req,res){
+        var userId = req.params.id;
+
+        // var userEmail = null;
+
+        console.log("In api user");
+        console.log(userId);
+
+        db.User.findAll({ where: { id: userId } }).then(function(dbUser){
+            res.json(dbUser);
+        });
+    })
 
 
     app.post("/api/user", function(req, res){
