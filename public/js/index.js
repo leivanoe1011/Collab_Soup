@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-
   // Check for click events on the navbar burger icon
   $(".navbar-burger").click(function () {
 
@@ -10,29 +8,27 @@ $(document).ready(function () {
 
   });
 
-
   //login modal open and close.
   $("#modal-btn").click(function () {
-    $("#login-modal").addClass("is-active")
-  })
+    $("#login-modal").addClass("is-active");
+  });
+
   $("#modalClose").click(function () {
-    $("#login-modal").removeClass("is-active")
-  })
-
-
-
+    $("#login-modal").removeClass("is-active");
+  });
 
   $("#accountCreate").click(function () {
     var $accountEmail = $("#accountEmail").val();
     var $emailConfirm = $("#emailConfirm").val();
     var $accountPassword = $("#accountPassword").val();
     var $passwordConfirm = $("#passwordConfirm").val();
+    var $accountUser = $("#accountUserName").val();
 
     var accountObj = {
-      user_name: "123",
+      user_name: $accountUser,
       email: $accountEmail,
       password: $accountPassword
-    }
+    };
 
     if ($accountEmail === $emailConfirm && $passwordConfirm === accountPassword) {
       $("#accountConfirm").html("Successful!");
@@ -40,7 +36,6 @@ $(document).ready(function () {
     } else {
       $("#accountConfirm").html("Passwords and emails do not match properly!");
       return false
-    }
-  })
-
+    };
+  });
 });
