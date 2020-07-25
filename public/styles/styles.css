@@ -2,23 +2,31 @@
   line-height: 2.5;
 }
 
-.main-section{
+.main-section {
   background: white;
-
 }
 
-.footerSection{
+.footerSection {
   background: salmon;
 }
 
-.navbar{
+.navbar {
   background: salmon;
 }
 
-.landing-img{
+.landing-img {
   margin-top: -100px;
 }
 
-.background{
-  background: transparent
+.background {
+  background: transparent;
+}
+
+#createCon {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#bodyView {
+  height: 80vh;
 }
