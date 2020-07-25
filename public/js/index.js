@@ -120,4 +120,24 @@ $(document).ready(function () {
       $("#login-modal").removeClass("is-active")
   })
 
+  var $accountEmail = $("#accountEmail").val()
+  var $emailConfirm = $("#emailConfirm").val()
+  var $accountPassword = $("#accountPassword").val()
+  var $passwordConfirm = $("#passwordConfirm").val()
+
+  var accountObj = {
+    accountEmail: $accountEmail,
+    accountPassword: $accountPassword
+  }
+
+  $("#accountCreate").click(function(){
+    if($accountEmail === $emailConfirm &&  $accountPassword === $passwordConfirm){
+      $("#accountConfirm").html("Successful!")
+      $.post("/api/user", accountObj)
+    } else{
+      $("#accountConfirm").html("Passwords and emails do not match properly!")
+      return
+    }
+  })
+
 });
