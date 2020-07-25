@@ -6,9 +6,9 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     User_project.associate = function(models){
-        User_project.belongsTo(models.User, {foreignKey: "user_id"});
-        User_project.belongsTo(models.Project, {foreignKey: "project_id"});
-    }
+        User_project.belongsTo(models.User, {foreignKey: "user_id", onDelete: "cascade"});
+        User_project.belongsTo(models.Project, {foreignKey: "project_id", onDelete: "cascade"});
+    };
 
     return User_project;
 };

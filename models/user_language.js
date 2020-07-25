@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
 
     User_language.associate = function(models){
         // User_language belongs to User
-        User_language.belongsTo(models.User, {foreignKey: "user_id"});
+        User_language.belongsTo(models.User, {foreignKey: "user_id", onDelete: "cascade"});
     };
 
     return User_language;
