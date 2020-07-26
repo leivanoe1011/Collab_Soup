@@ -59,15 +59,15 @@ $(document).ready(function () {
         $("#login-modal").removeClass("is-active");
       };
 
-      localStorage.setItem("loggedin", true);
-      localStorage.setItem("id", response[0].id);
-      localStorage.setItem("username", response[0].email);
-      localStorage.setItem("user_name", response[0].user_name);
+      sessionStorage.setItem("loggedin", true);
+      sessionStorage.setItem("id", response[0].id);
+      sessionStorage.setItem("email", response[0].email);
+      sessionStorage.setItem("user_name", response[0].user_name);
 
-      if(localStorage.getItem("loggedin") === "true"){
+      if(sessionStorage.getItem("loggedin") === "true"){
         window.location = "/feed"
       }
-      
+
     });
 
   });

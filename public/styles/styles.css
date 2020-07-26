@@ -27,3 +27,7 @@
 #bodyView {
   min-height: 80vh;
 }
+
+#notFound{
+  margin-top: 50px;
+}
