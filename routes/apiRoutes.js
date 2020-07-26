@@ -6,23 +6,21 @@ module.exports = function(app) {
     app.post("/api/userByEmail", function(req, res){
         
         var userEmail = req.body.email;
+        var userPass = req.body.password;
 
         // var userEmail = null;
 
         if(userEmail === ""){
             // It will quit
             res.status(404).send("Not Found");
-        }
+        };
 
         console.log("In api user");
-        console.log(userEmail);
-
-        db.User.findAll({ where: { email: userEmail } }).then(function(dbUser){
+        
+        db.User.findAll({ where: { email: userEmail, password: userPass } }).then(function(dbUser){
             res.json(dbUser);
         });
         // End of Then
-
-
     });
     // End of get by Email
 

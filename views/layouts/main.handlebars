@@ -14,7 +14,7 @@
 
   <nav class="navbar is-transparent">
     <div class="navbar-brand">
-      <a class="navbar-item"><img src="/images/noodles.png">Collab Soup
+      <a class="navbar-item" href="/"><img src="/images/noodles.png">Collab Soup
       </a>
       <div class="navbar-burger burger" data-target="navbarTransparent">
         <span></span>
@@ -25,7 +25,7 @@
 
     <div id="navbarTransparent" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item" href="">
+        <a class="navbar-item" href="/">
           Home
         </a>
         <div class="navbar-item has-dropdown is-hoverable">
@@ -33,7 +33,7 @@
             Other pages
           </a>
           <div class="navbar-dropdown is-boxed">
-            <a class="navbar-item" href="">
+            <a class="navbar-item" href="/feed">
               Feed
             </a>
           </div>
@@ -74,16 +74,58 @@
   </div>
 
 
+  <div class="modal animate__animated animate__fadeIn animate__faster" id="login-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Sign in</p>
+        <button class="delete" id="modalClose" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="email" placeholder="Email" id="loginEmail">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="password" placeholder="Password" id="loginPassword">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <div class="buttons is-right">
+          <button class="button is-success is-centered" id="loginBtn">Login</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+
   <footer class="footer footerSection">
     <div class="columns">
-      <div class="column is-1 is-offset-8">
+      <div class="column is-4 is-offset-2">
         <div class="content">
-          <a class="" href="#">
+          <h1 class="is-large">About</h1>
+          <p class="is-medium">
+            This website was created as an idea for developers to connect with each other to collaborate on ideas.
+          </p>
+        </div>
+      </div>
+      <div class="column is-1 is-offset-2">
+        <div class="content">
+          <a href="#">
             GitHub
           </a>
         </div>
         <div class="content">
-          <a class="" href="#">
+          <a href="#">
             LinkedIn
           </a>
         </div>

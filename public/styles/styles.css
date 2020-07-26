@@ -1,9 +1,5 @@
-.list-group-item {
-  line-height: 2.5;
-}
-
 .main-section {
-  background: white;
+  background: grey;
 }
 
 .footerSection {
@@ -14,12 +10,13 @@
   background: salmon;
 }
 
-.landing-img {
-  margin-top: -100px;
-}
-
 .background {
   background: transparent;
+}
+
+#mainSec{
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 #createCon {
@@ -28,5 +25,9 @@
 }
 
 #bodyView {
-  height: 80vh;
+  min-height: 80vh;
+}
+
+#notFound{
+  margin-top: 50px;
 }
