@@ -10,14 +10,18 @@ module.exports = function (app) {
   });
 
   app.get("/creation", function (req, res) {
-    res.render("creation", {
-      examples: dbExamples
-    });
+    res.render("creation");
   });
 
   app.get("/about", function (req, res) {
     res.render("about", {
       msg: "about page"
+    });
+  });
+
+  app.get("/feed", function (req, res) {
+    res.render("feed", {
+      msg: "Feed page"
     });
   });
 
