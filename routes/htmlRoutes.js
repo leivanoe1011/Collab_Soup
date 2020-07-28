@@ -4,21 +4,13 @@ var db = require("../models");
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    db.Example.findAll({}).then(function (dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
+    res.render("index", {
+      msg: "Welcome!",
     });
   });
 
   app.get("/creation", function (req, res) {
-    db.Example.findAll({}).then(function (dbExamples) {
-      res.render("creation", {
-        msg: "account creation",
-        examples: dbExamples
-      });
-    });
+    res.render("creation");
   });
 
   app.get("/about", function (req, res) {
@@ -27,16 +19,19 @@ module.exports = function (app) {
     });
   });
 
-
-
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function (req, res) {
-
-    res.render("creation", {
-      example: account
+  app.get("/feed", function (req, res) {
+    res.render("feed", {
+      msg: "Feed page"
     });
-
   });
+
+  app.get("/profile/:id", function (req, res) {
+    var userId = req.params.id;
+
+    db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
+      res.render("profile", { user: dbUser })
+    })
+  })
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {

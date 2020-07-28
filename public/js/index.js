@@ -67,7 +67,6 @@ $(document).ready(function () {
       if(sessionStorage.getItem("loggedin") === "true"){
         window.location = "/feed"
       }
-
     });
 
   });
