@@ -11,17 +11,21 @@ module.exports = function(app) {
 
         if(userEmail === ""){
             // It will quit
-            res.status(404).send("Not Found");
+            res.status(404).send("Email is Blank");
         }
 
         console.log("In api user");
         console.log(userEmail);
 
         db.User.findAll({ where: { email: userEmail } }).then(function(dbUser){
+            
+            if(dbUser.length === 0){
+                res.status(404).send("No email found");
+            }
+            
             res.json(dbUser);
         });
         // End of Then
-
 
     });
     // End of get by Email
