@@ -7,7 +7,7 @@ var exphbs = require("express-handlebars");
 
 // Models
 // Here, we are importing the models, and then calling the Sequelize sync function.
-var models = require("./app/models");
+var models = require("./models");
 
 
 // Passport
@@ -75,7 +75,7 @@ require("./routes/apiRoutes")(app);
 
 //load passport strategies
 // models.user ... user will mirror the lowercase "user" defined in the user model
-require('./app/config/passport/passport.js')(passport, models.User);
+require('./config/passport/passport.js')(passport, models.User);
 
 
 

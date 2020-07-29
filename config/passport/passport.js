@@ -45,7 +45,7 @@ module.exports = function(passport, user){
                 else{
                     var data = {
                         email: email,
-                        password: generateHash(password);
+                        password: generateHash(password),
                         firstName: req.body.firstName, // might have to rename first name to "name"
                         lastName: req.body.lastName // Might need to delete last name
                     };
@@ -68,22 +68,35 @@ module.exports = function(passport, user){
     // end of Passport.User
 
 
-    // Serialize
-    // In this function, we will be saving the usr id to the session
+   // serialize
+    // In this function, we will be saving the user id to the session
     passport.serializeUser(function(user, done) {
+    
         done(null, user.id);
+    
     });
 
-    // Deserialize user
-    passport.deserializeUser(id).then(function(user){
-        if(user){
-            done(null, user.get());
-        }
-        else{
-            done(user.errors, null);
-        }
+    // deserialize user 
+    passport.deserializeUser(function(id, done) {
+    
+        // we use the Sequelize findById promise to get the user, 
+        // and if successful, an instance of the Sequelize model is returned.
+        // User.findById(id).then(function(user) {
+        User.findByPk(id).then(function(user) {
+    
+            if (user) {
+    
+                done(null, user.get());
+    
+            } else {
+    
+                done(user.errors, null);
+    
+            }
+    
+        });
+    
     });
-
 
     //LOCAL SIGNIN
     passport.use('local-signin', new LocalStrategy(

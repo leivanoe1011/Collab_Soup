@@ -17,12 +17,16 @@ exports.signin = function(req, res){
 
 exports.dashboard = function(req, res) {
  
+    console.log("In html controller dashboard");
+    console.log(req);
     res.render('dashboard');
  
 }
 
 exports.profile = function(req, res) {
  
+
+
     res.render('profile');
  
 }
