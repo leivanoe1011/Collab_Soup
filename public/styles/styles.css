@@ -1,13 +1,9 @@
 .main-section {
-  background: grey;
+  background: whitesmoke;
 }
 
-.footerSection {
-  background: salmon;
-}
-
-.navbar {
-  background: salmon;
+.foot-text{
+  color: #e60000;
 }
 
 .background {
