@@ -30,7 +30,7 @@ $(document).ready(function () {
       password: $accountPassword
     };
 
-    if ($accountEmail === $emailConfirm && $passwordConfirm === accountPassword) {
+    if ($accountEmail === $emailConfirm && $passwordConfirm === $accountPassword) {
       $("#accountConfirm").html("Successful!");
       $.post("/api/user", accountObj);
     } else {
