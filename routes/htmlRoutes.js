@@ -79,11 +79,10 @@ module.exports = function(app, passport) {
     var userId = req.params.id;
 
     db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
-      res.render("profile", { user: dbUser })
+      res.render("profile", { example: dbUser[0].dataValues});
+      console.log(dbUser[0].dataValues);
     });
-    
-  });
-
+  })
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
