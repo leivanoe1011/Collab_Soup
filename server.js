@@ -55,6 +55,7 @@ app.engine(
     defaultLayout: "main" // Server will read main.handlebars firstß
   })
 );
+
 app.set("view engine", "handlebars");
 
 
@@ -81,14 +82,17 @@ require('./config/passport/passport.js')(passport, models.User);
 
 // This will give us the option to restructure our Database based
 // ON changes to the Sequelizer
+
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
+
 if (process.env.NODE_ENV === "test") {
   // This will allow us to change our Database every time we initiate the server
   // IN the test environment
-  syncOptions.force = true; 
+
+  syncOptions.force = true;
 }
 
 // Starting the server, syncing our models ------------------------------------/
