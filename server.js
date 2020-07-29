@@ -1,16 +1,45 @@
-require("dotenv").config();
+
+var env = require("dotenv").config();
+
 var express = require("express");
+
 var exphbs = require("express-handlebars");
-var env = process.env.NODE_ENV || "development";
-var db = require("./models");
+
+// Models
+// Here, we are importing the models, and then calling the Sequelize sync function.
+var models = require("./models");
+
+
+// Passport
+// import the passport module and the express-session, 
+// both of which we need to handle authentication
+var passport = require("passport");
+
+// passport has to save a user ID in the session 
+// and it uses this to manage retrieving the user details when needed
+var session = require("express-session");
+
+
+// This extracts the entire body part of an incoming 
+// request and exposes it in a format that is easier to work with. 
+// In this case, we will use the JSON format.
+var bodyParser = require('body-parser');
+
+
+// load is no longer a function, we must use config
+var env = require('dotenv').config()
+// var env = require("dotenv").load();
+
 
 var app = express();
+
+
 var PORT = process.env.PORT || 3000;
 
 // Middleware
 // Extended will allow our Request variable within our Routers
 // to access form inputs
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 // Middleware below allows the app to parse JSON
 app.use(express.json());
@@ -29,9 +58,26 @@ app.engine(
 
 app.set("view engine", "handlebars");
 
+
+// express session and passport session add them both as middleware.
+// session secret
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); 
+
+app.use(passport.initialize());
+ 
+app.use(passport.session()); // persistent login sessions
+
+
 // Routes
-require("./routes/htmlRoutes")(app);
+require("./routes/htmlRoutes")(app,passport);
+
 require("./routes/apiRoutes")(app);
+
+
+//load passport strategies
+// models.user ... user will mirror the lowercase "user" defined in the user model
+require('./config/passport/passport.js')(passport, models.User);
+
 
 
 // This will give us the option to restructure our Database based
@@ -50,7 +96,7 @@ var syncOptions = { force: false };
 // }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function () {
+models.sequelize.sync(syncOptions).then(function () {
   app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
