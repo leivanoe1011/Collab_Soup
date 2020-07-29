@@ -1,7 +1,50 @@
 
 var db = require("../models");
 
-module.exports = function(app) {
+var authController = require('../controllers/htmlController.js');
+
+module.exports = function(app, passport) {
+
+  // The two functions below will not be used 
+  // since we are using Modals
+  // app.get('/signup', authController.signup);
+  // app.get('/signin', authController.signin);
+
+
+  app.post('/signup', passport.authenticate('local-signup', {
+    
+          successRedirect: '/dashboard',
+
+          failureRedirect: '/signup'
+      }
+
+  ));
+
+
+  app.post('/signin', passport.authenticate('local-signin', {
+
+          successRedirect: '/dashboard',
+  
+          failureRedirect: '/signin'
+      }
+  
+  ));
+
+
+  // make sure the page can only be accessed when a user is logged into the session
+  app.get('/dashboard', isLoggedIn, authController.dashboard);
+
+  app.get('/logout',authController.logout);
+
+
+  function isLoggedIn(req, res, next){
+    
+    if(req.isAuthenticated()) return next();
+
+    res.redirect("/signin");
+  }
+
+
   // Load index page
   app.get("/", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
