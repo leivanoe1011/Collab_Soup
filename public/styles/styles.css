@@ -1,5 +1,5 @@
-.main-section {
-  background: whitesmoke;
+html{
+  background-color: #bfbfbf;
 }
 
 .foot-text{
@@ -9,11 +9,11 @@
 .background {
   background: transparent;
 }
-
+/* 
 #mainSec{
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
+  
+  
+} */
 
 #createCon {
   margin-top: 10px;
@@ -21,7 +21,9 @@
 }
 
 #bodyView {
+  margin-top: 10px;
   min-height: 80vh;
+  margin-bottom: 10px;
 }
 
 #notFound{
