@@ -12,8 +12,9 @@ module.exports = function(app, passport) {
 
 
   app.post('/signup', passport.authenticate('local-signup', {
-    
-          successRedirect: '/dashboard',
+
+          // successRedirect: '/dashboard',
+          successRedirect: '/profile',
 
           failureRedirect: '/signup'
       }
@@ -23,7 +24,8 @@ module.exports = function(app, passport) {
 
   app.post('/signin', passport.authenticate('local-signin', {
 
-          successRedirect: '/dashboard',
+          // successRedirect: '/dashboard',
+          successRedirect: '/profile',
   
           failureRedirect: '/signin'
       }
@@ -32,7 +34,8 @@ module.exports = function(app, passport) {
 
 
   // make sure the page can only be accessed when a user is logged into the session
-  app.get('/dashboard', isLoggedIn, authController.dashboard);
+  // app.get('/dashboard', isLoggedIn, authController.dashboard);
+  app.get('/profile', isLoggedIn, authController.profile);
 
   app.get('/logout',authController.logout);
 
