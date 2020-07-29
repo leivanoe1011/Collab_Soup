@@ -11,6 +11,14 @@ module.exports = function(app, passport) {
   // app.get('/signin', authController.signin);
 
 
+  function isLoggedIn(req, res, next){
+    
+    if(req.isAuthenticated()) return next();
+
+    res.redirect("/signin");
+  }
+
+  
   app.post('/signup', passport.authenticate('local-signup', {
 
           // successRedirect: '/dashboard',
@@ -40,12 +48,6 @@ module.exports = function(app, passport) {
   app.get('/logout',authController.logout);
 
 
-  function isLoggedIn(req, res, next){
-    
-    if(req.isAuthenticated()) return next();
-
-    res.redirect("/signin");
-  }
 
 
    // Load index page
@@ -56,23 +58,14 @@ module.exports = function(app, passport) {
   });
 
 
-  app.get("/creation", function (req, res) {
-    res.render("creation");
-  });
+  app.get("/creation", isLoggedIn, authController.creation);
 
 
-  app.get("/about", function (req, res) {
-    res.render("about", {
-      msg: "about page"
-    });
-  });
+  app.get("/about", authController.creation);
 
 
-  app.get("/feed", function (req, res) {
-    res.render("feed", {
-      msg: "Feed page"
-    });
-  });
+  app.get("/feed", authController.feed);
+
 
 
   app.get("/profile/:id", function (req, res) {
@@ -81,7 +74,7 @@ module.exports = function(app, passport) {
     db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
       res.render("profile", { user: dbUser })
     });
-    
+
   });
 
 

@@ -23,12 +23,26 @@ exports.dashboard = function(req, res) {
  
 }
 
+
+exports.creation = function(req, res){
+    res.render("creation");
+}
+
+
+exports.about = function(req, res){
+    res.render("about", {msg: "about page"});
+}
+
+
+exports.feed = function(req, res){
+    res.render("feed", {msg: "Feed Page"});
+}
+
+
 exports.profile = function(req, res) {
- 
 
-
+    console.log(req);
     res.render('profile');
- 
 }
 
 
