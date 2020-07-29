@@ -2,6 +2,7 @@
 var db = require("../models");
 
 module.exports = function(app) {
+    
     // Get all Users
     app.post("/api/userByEmail", function(req, res){
         
@@ -28,8 +29,7 @@ module.exports = function(app) {
         });
         // End of Then
 
-            res.status(404).send("Not Found");
-        };
+
 
         console.log("In api user");
         
