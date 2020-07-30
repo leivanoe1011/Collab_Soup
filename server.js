@@ -88,12 +88,12 @@ var syncOptions = { force: false };
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 
-if (process.env.NODE_ENV === "test") {
-  // This will allow us to change our Database every time we initiate the server
-  // IN the test environment
+// if (env === "development") {
+//   // This will allow us to change our Database every time we initiate the server
+//   // IN the test environment
 
-  syncOptions.force = true;
-}
+//   syncOptions.force = true;
+// }
 
 // Starting the server, syncing our models ------------------------------------/
 models.sequelize.sync(syncOptions).then(function () {
