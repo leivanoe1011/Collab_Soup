@@ -1,0 +1,89 @@
+
+<div class="container" id="createCon">
+
+    <div class="box has-text-centered">
+
+         <form id="signup" name="signup" method="post" action="/signup">
+            
+
+
+            <div class="columns is-centered">
+                <div class="control has-icons-left">
+                    
+                    <input class="text input is-large" name="email" type="email" placeholder="Email"/>
+
+                    <span class="icon is-medium is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                </div>
+
+            </div>
+            {{!-- End of Email --}}
+
+            </br>
+
+            <div class="columns is-centered">
+                <div class="control has-icons-left">
+                    
+                    <input class="text input is-large" name="firstname" type="text" placeholder="First Name" />
+
+                    <span class="icon is-medium is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+
+            </div>
+            {{!-- End of First Name --}}
+
+            </br>
+
+            <div class="columns is-centered">
+                <div class="control has-icons-left">
+                    
+                    <input class="text input is-large" name="lastname" type="text" placeholder="Last Name"/>
+
+                    <span class="icon is-medium is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+
+            </div>
+            {{!-- End of Last Name --}}
+
+            </br>
+
+             <div class="columns is-centered">
+                 <div class="field">
+                    <p class="control has-icons-left">
+                        
+                        <input class="input is-large" name="password" type="password" placeholder="Password"/>
+                        <span class="icon is-large is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+            {{!-- End of Password --}}
+
+            </br>
+            
+            <div class="columns">
+                <div class="column">
+                    <input class="btn button is-success" type="submit" value="Sign Up" />
+                    {{!-- <button class="button is-success" id="accountCreate">Submit</button> --}}
+                </div>
+            </div>
+            {{!-- End of Submit --}}
+            
+            
+        </form>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script defer src="/js/all.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/creation.js"></script>
