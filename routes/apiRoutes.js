@@ -16,8 +16,8 @@ module.exports = function (app) {
             res.status(404).send("Email is Blank");
         }
 
-        console.log("In api user");
-        console.log(userEmail);
+
+
 
         db.User.findAll({ where: { email: userEmail } }).then(function (dbUser) {
 
@@ -31,7 +31,7 @@ module.exports = function (app) {
 
 
 
-        console.log("In api user");
+
 
         db.User.findAll({ where: { email: userEmail, password: userPass } }).then(function (dbUser) {
             res.json(dbUser);
@@ -45,8 +45,7 @@ module.exports = function (app) {
 
         // var userEmail = null;
 
-        console.log("In api user");
-        console.log(userId);
+        
 
         db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
             res.json(dbUser);
@@ -56,11 +55,10 @@ module.exports = function (app) {
 
     app.post("/api/user", function (req, res) {
 
-        console.log("In api post");
+       
 
         var newUser = req.body;
 
-        console.log(newUser);
         db.User.create(newUser).then(function (dbUser) {
             res.json(dbUser);
         })
@@ -153,9 +151,7 @@ module.exports = function (app) {
 
     app.get("/api/projectAll", function (req, res) {
         db.Project.findAll({}).then(function (dbProject) {
-
-
-            console.log(res.json(dbProject));
+           res.json(dbProject);
         });
     })
 }

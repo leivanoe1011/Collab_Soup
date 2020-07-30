@@ -60,7 +60,7 @@ module.exports = function(app, passport) {
   app.get("/creation", authController.creation);
 
 
-  app.get("/about", authController.creation);
+  app.get("/about", authController.about);
 
 
   app.get("/profile", isLoggedIn, authController.profile);
