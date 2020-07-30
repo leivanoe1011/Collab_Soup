@@ -85,14 +85,11 @@ module.exports = function(app, passport) {
   })
 
   // Render 404 page for any unmatched routes
-  app.get("*", function (req, res) {
-    res.render("404");
-  });
+  // app.get("/404", function (req, res) {
+  //   res.render("404");
+  // });
 
 }
-
-
-
 
 
 
