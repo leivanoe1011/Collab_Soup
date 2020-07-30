@@ -1,3 +1,31 @@
-.list-group-item {
-  line-height: 2.5;
+html{
+  background-color: #bfbfbf;
+}
+
+.foot-text{
+  color: #e60000;
+}
+
+.background {
+  background: transparent;
+}
+/* 
+#mainSec{
+  
+  
+} */
+
+#createCon {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#bodyView {
+  margin-top: 10px;
+  min-height: 80vh;
+  margin-bottom: 10px;
+}
+
+#notFound{
+  margin-top: 50px;
 }
