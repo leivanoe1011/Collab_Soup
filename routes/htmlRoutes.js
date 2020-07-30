@@ -12,7 +12,10 @@ module.exports = function(app, passport) {
 
 
   function isLoggedIn(req, res, next){
-    
+
+    console.log("In Is Logged IN. Below is the req object");
+    console.log(req);
+
     if(req.isAuthenticated()) return next();
 
     res.redirect("/signin");
@@ -48,8 +51,6 @@ module.exports = function(app, passport) {
   app.get('/logout',authController.logout);
 
 
-
-
    // Load index page
    app.get("/", function (req, res) {
     res.render("index", {
@@ -58,7 +59,7 @@ module.exports = function(app, passport) {
   });
 
 
-  app.get("/creation", isLoggedIn, authController.creation);
+  app.get("/creation", authController.creation);
 
 
   app.get("/about", authController.creation);
@@ -67,15 +68,7 @@ module.exports = function(app, passport) {
   app.get("/feed", authController.feed);
 
 
-
-  app.get("/profile/:id", function (req, res) {
-    var userId = req.params.id;
-
-    db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
-      res.render("profile", { user: dbUser })
-    });
-
-  });
+  app.get("/profile/", isLoggedIn, authController.profile);
 
 
   // Render 404 page for any unmatched routes
