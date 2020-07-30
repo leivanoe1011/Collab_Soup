@@ -46,9 +46,10 @@ module.exports = function(passport, user){
                     var data = {
                         email: email,
                         password: generateHash(password),
-                        firstName: req.body.firstName, // might have to rename first name to "name"
-                        lastName: req.body.lastName // Might need to delete last name
+                        firstname: req.body.firstname, // might have to rename first name to "name"
+                        lastname: req.body.lastname // Might need to delete last name
                     };
+
 
                     // if the user does not exist, than we create it
                     User.create(data).then(function(newUser, created){

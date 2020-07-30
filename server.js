@@ -83,7 +83,7 @@ require('./config/passport/passport.js')(passport, models.User);
 // This will give us the option to restructure our Database based
 // ON changes to the Sequelizer
 
-var syncOptions = { force: false };
+var syncOptions = { force: true };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

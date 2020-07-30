@@ -11,6 +11,15 @@ module.exports = function(app, passport) {
   // app.get('/signin', authController.signin);
 
 
+  function isLoggedIn(req, res, next){
+
+    if(req.isAuthenticated()) return next();
+
+    // If not authenticated, then redirect to the signin page
+    res.redirect("/signin");
+  }
+
+  
   app.post('/signup', passport.authenticate('local-signup', {
 
           // successRedirect: '/dashboard',
@@ -40,14 +49,6 @@ module.exports = function(app, passport) {
   app.get('/logout',authController.logout);
 
 
-  function isLoggedIn(req, res, next){
-    
-    if(req.isAuthenticated()) return next();
-
-    res.redirect("/signin");
-  }
-
-
    // Load index page
    app.get("/", function (req, res) {
     res.render("index", {
@@ -56,33 +57,17 @@ module.exports = function(app, passport) {
   });
 
 
-  app.get("/creation", function (req, res) {
-    res.render("creation");
-  });
+  app.get("/creation", authController.creation);
 
 
-  app.get("/about", function (req, res) {
-    res.render("about", {
-      msg: "about page"
-    });
-  });
+  app.get("/about", authController.creation);
 
 
-  app.get("/feed", function (req, res) {
-    res.render("feed", {
-      msg: "Feed page"
-    });
-  });
+  app.get("/profile", isLoggedIn, authController.profile);
 
 
-  app.get("/profile/:id", function (req, res) {
-    var userId = req.params.id;
+  app.get("/feed", authController.feed);
 
-    db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
-      res.render("profile", { example: dbUser[0].dataValues});
-      console.log(dbUser[0].dataValues);
-    });
-  })
 
   // Render 404 page for any unmatched routes
   // app.get("/404", function (req, res) {
