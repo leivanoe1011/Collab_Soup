@@ -30,7 +30,7 @@ $(document).ready(function () {
       password: $accountPassword
     };
 
-    if ($accountEmail === $emailConfirm && $passwordConfirm === accountPassword) {
+    if ($accountEmail === $emailConfirm && $passwordConfirm === $accountPassword) {
       $("#accountConfirm").html("Successful!");
       $.post("/api/user", accountObj);
     } else {
@@ -64,8 +64,8 @@ $(document).ready(function () {
       sessionStorage.setItem("email", response[0].email);
       sessionStorage.setItem("user_name", response[0].user_name);
 
-      if(sessionStorage.getItem("loggedin") === "true"){
-        window.location = "/feed"
+      if (sessionStorage.getItem("loggedin") === "true") {
+        window.location = "/profile/" + sessionStorage.getItem("id")
       }
     });
 
