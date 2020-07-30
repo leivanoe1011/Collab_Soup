@@ -10,7 +10,7 @@ $(document).ready(function () {
         
 
         for (var i = 0; i < response.length; i++) {
-            $("#feedContent").append(response[i].project_name);
+            var hello = 0;
 
         };
 
