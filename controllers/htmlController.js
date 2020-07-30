@@ -23,12 +23,34 @@ exports.dashboard = function(req, res) {
  
 }
 
+
+exports.creation = function(req, res){
+    res.render("creation");
+}
+
+
+exports.about = function(req, res){
+    res.render("about", {msg: "about page"});
+}
+
+
+exports.feed = function(req, res){
+    res.render("feed", {msg: "Feed Page"});
+}
+
+
 exports.profile = function(req, res) {
- 
+
+    // console.log(req);
+        
+    var userId = req.user.id
 
 
-    res.render('profile');
- 
+    db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
+        // console.log(dbUser);
+      res.render("profile", { user: dbUser[0].dataValues });
+    });
+
 }
 
 

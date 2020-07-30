@@ -10,8 +10,7 @@ CREATE TABLE users
 	id INT AUTO_INCREMENT NOT NULL,
 		PRIMARY KEY(id),
 	email VARCHAR(500) NOT NULL,
-    password VARCHAR(2000) NOT NULL,
-    user_name
+    password VARCHAR(2000) NOT NULL
 );
 
 -- Link user to the Languages they are confortable with
@@ -19,7 +18,7 @@ CREATE TABLE user_languages
 (
 	id INT AUTO_INCREMENT NOT NULL,
 		PRIMARY KEY(id),
-	user_id INT,
+	userid INT,
 		FOREIGN KEY(user_id)
 			REFERENCES users(id),
 	language_name VARCHAR(500) NOT NULL
@@ -60,3 +59,17 @@ CREATE TABLE user_project
 
 
 
+CREATE TABLE profile_comments (
+	id INT AUTO_INCREMENT NOT NULL,
+		PRIMARY KEY(id),
+	userid INT,
+		FOREIGN KEY(user_id)
+				REFERENCES users(id),
+	
+	commenter_id INT,
+		FOREIGN KEY(user_id)
+				REFERENCES users(id),
+	
+	comment VARCHAR(2000)
+
+);

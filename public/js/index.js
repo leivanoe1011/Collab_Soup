@@ -32,7 +32,8 @@ $(document).ready(function () {
 
     if ($accountEmail === $emailConfirm && $passwordConfirm === $accountPassword) {
       $("#accountConfirm").html("Successful!");
-      $.post("/api/user", accountObj);
+      // $.post("/api/user", accountObj);
+      $.post("/signup", accountObj);
     } else {
       $("#accountConfirm").html("Passwords and emails do not match properly!");
       return false;
