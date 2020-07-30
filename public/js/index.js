@@ -17,32 +17,7 @@ $(document).ready(function () {
     $("#login-modal").removeClass("is-active");
   });
 
-<<<<<<< HEAD
   //LOGIN MODAL FORM
-=======
-  $("#accountCreate").click(function () {
-    let $accountEmail = $("#accountEmail").val();
-    let $emailConfirm = $("#emailConfirm").val();
-    let $accountPassword = $("#accountPassword").val();
-    let $passwordConfirm = $("#passwordConfirm").val();
-    let $accountUser = $("#accountUserName").val();
-
-    var accountObj = {
-      user_name: $accountUser,
-      email: $accountEmail,
-      password: $accountPassword
-    };
-
-    if ($accountEmail === $emailConfirm && $passwordConfirm === $accountPassword) {
-      $("#accountConfirm").html("Successful!");
-      // $.post("/api/user", accountObj);
-      $.post("/signup", accountObj);
-    } else {
-      $("#accountConfirm").html("Passwords and emails do not match properly!");
-      return false;
-    };
-  });
->>>>>>> ad3f445a0be3b1d60ae5edc3f18d02d4c68eceec
 
   $("#loginBtn").click(function () {
     let $loginEmail = $("#loginEmail").val();
