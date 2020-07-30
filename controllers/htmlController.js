@@ -41,17 +41,16 @@ exports.feed = function(req, res){
 
 exports.profile = function(req, res) {
 
-    console.log("In the Profile html controller");
-    console.log(req);
-        
-    // var userId = req.user.id
-
-    // db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
-    //   res.render("profile", { user: dbUser })
-    // });
-
     // console.log(req);
-    res.render('profile');
+        
+    var userId = req.user.id
+
+
+    db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
+        // console.log(dbUser);
+      res.render("profile", { user: dbUser[0].dataValues });
+    });
+
 }
 
 

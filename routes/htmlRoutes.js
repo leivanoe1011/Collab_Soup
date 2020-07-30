@@ -13,11 +13,9 @@ module.exports = function(app, passport) {
 
   function isLoggedIn(req, res, next){
 
-    console.log("In Is Logged IN. Below is the req object");
-    console.log(req);
-
     if(req.isAuthenticated()) return next();
 
+    // If not authenticated, then redirect to the signin page
     res.redirect("/signin");
   }
 
@@ -65,19 +63,11 @@ module.exports = function(app, passport) {
   app.get("/about", authController.creation);
 
 
+  app.get("/profile", isLoggedIn, authController.profile);
+
+
   app.get("/feed", authController.feed);
 
-
-<<<<<<< HEAD
-  app.get("/profile/", isLoggedIn, authController.profile);
-
-=======
-    db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
-      res.render("profile", { example: dbUser[0].dataValues});
-      console.log(dbUser[0].dataValues);
-    });
-  })
->>>>>>> 71b41fd61321573741042fbed9219aed41855ea7
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
