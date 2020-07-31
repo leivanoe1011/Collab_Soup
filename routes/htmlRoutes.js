@@ -16,16 +16,17 @@ module.exports = function(app, passport) {
     if(req.isAuthenticated()) return next();
 
     // If not authenticated, then redirect to the signin page
-    res.redirect("/signin");
+    res.redirect("/creation");
   }
 
   
-  app.post('/signup', passport.authenticate('local-signup', {
+  app.post('/creation', passport.authenticate('local-creation', {
 
           // successRedirect: '/dashboard',
           successRedirect: '/profile',
 
-          failureRedirect: '/signup'
+          failureRedirect: '/creation'
+
       }
 
   ));
@@ -34,19 +35,19 @@ module.exports = function(app, passport) {
   app.post('/signin', passport.authenticate('local-signin', {
 
           // successRedirect: '/dashboard',
-          successRedirect: '/profile',
-  
-          failureRedirect: '/signin'
+          successRedirect: "/profile",
+
+          failureRedirect: "/"
       }
   
   ));
 
 
   // make sure the page can only be accessed when a user is logged into the session
-  app.get('/dashboard', isLoggedIn, authController.dashboard);
-  // app.get('/profile', isLoggedIn, authController.profile);
+  // app.get('/dashboard', isLoggedIn, authController.dashboard);
+  app.get('/profile', isLoggedIn, authController.profile);
 
-  app.get('/logout',authController.logout);
+  app.get('/logout', authController.logout);
 
 
    // Load index page
@@ -63,30 +64,5 @@ module.exports = function(app, passport) {
   app.get("/about", authController.about);
 
 
-  app.get("/profile", isLoggedIn, authController.profile);
-
-
   app.get("/feed", authController.feed);
-
-
-  // Render 404 page for any unmatched routes
-  // app.get("/404", function (req, res) {
-  //   res.render("404");
-  // });
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+};
