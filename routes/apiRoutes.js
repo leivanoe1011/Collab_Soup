@@ -9,34 +9,6 @@ module.exports = function (app) {
         var userEmail = req.body.email;
         var userPass = req.body.password;
 
-        // var userEmail = null;
-
-        if (userEmail === "") {
-            // It will quit
-            res.status(404).send("Email is Blank");
-        }
-
-
-
-
-        db.User.findAll({ where: { email: userEmail } }).then(function (dbUser) {
-
-            if (dbUser.length === 0) {
-                res.status(404).send("No email found");
-            }
-
-            res.json(dbUser);
-        });
-        // End of Then
-
-
-
-
-
-        db.User.findAll({ where: { email: userEmail, password: userPass } }).then(function (dbUser) {
-            res.json(dbUser);
-        });
-        // End of Then
     });
     // End of get by Email
 

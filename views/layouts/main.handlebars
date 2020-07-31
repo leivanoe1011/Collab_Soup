@@ -50,6 +50,22 @@
         <div class="navbar-item">
           <div class="field is-grouped">
             <p class="control">
+              <a class="bd-tw-button button is-danger is-hidden" id="logoutBtn">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>
+                  Logout
+                </span>
+              </a>
+              <a class="bd-tw-button button is-success is-hidden" href="/profile" id="profileBtn">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user-plus"></i>
+                </span>
+                <span>
+                  Profile
+                </span>
+              </a>
               <a class="bd-tw-button button is-danger" id="modal-btn">
                 <span class="icon is-small is-left">
                   <i class="fas fa-sign-in-alt"></i>
@@ -58,7 +74,7 @@
                   Login
                 </span>
               </a>
-              <a class="bd-tw-button button is-success" href="/creation">
+              <a class="bd-tw-button button is-success" href="/creation" id="signupBtn">
                 <span class="icon is-small is-left">
                   <i class="fas fa-user-plus"></i>
                 </span>
@@ -70,7 +86,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </nav>
 
@@ -87,29 +103,31 @@
         <p class="modal-card-title">Sign in</p>
         <button class="delete" id="modalClose" aria-label="close"></button>
       </header>
-      <section class="modal-card-body">
-        <div class="field">
-          <p class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="Email" id="loginEmail">
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-          </p>
-        </div>
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" type="password" placeholder="Password" id="loginPassword">
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
-      </section>
-      <footer class="modal-card-foot">
-        <div class="buttons is-right">
-          <button class="button is-success is-centered" id="loginBtn">Login</button>
-        </div>
-      </footer>
+      <form id="loginForm" name="signin" method="post" action="/signin">
+        <section class="modal-card-body">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" name="email" type="email" placeholder="Email" id="loginEmail">
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" name="password" type="password" placeholder="Password" id="loginPassword">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <div class="buttons is-right">
+            <input class="btn button is-success" type="submit" value="Sign In" />
+          </div>
+        </footer>
+      </form>
     </div>
   </div>
 
