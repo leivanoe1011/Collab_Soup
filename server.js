@@ -8,6 +8,9 @@ var exphbs = require("express-handlebars");
 // Here, we are importing the models, and then calling the Sequelize sync function.
 var models = require("./models");
 
+var flash = require("connect-flash");
+
+
 
 // Passport
 // import the passport module and the express-session, 
@@ -68,7 +71,9 @@ app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}))
 
 app.use(passport.initialize());
  
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session()); // persistent login sessions\
+
+app.use(flash());
 
 
 // Routes
@@ -85,7 +90,7 @@ require('./config/passport/passport.js')(passport, models.User, models.User_lang
 // This will give us the option to restructure our Database based
 // ON changes to the Sequelizer
 
-var syncOptions = { force: false };
+var syncOptions = { force: false};
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

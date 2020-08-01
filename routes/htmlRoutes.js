@@ -3,7 +3,7 @@ var db = require("../models");
 
 var authController = require('../controllers/htmlController.js');
 
-module.exports = function(app, passport) {
+module.exports = function (app, passport) {
 
   // The two functions below will not be used 
   // since we are using Modals
@@ -11,35 +11,37 @@ module.exports = function(app, passport) {
   // app.get('/signin', authController.signin);
 
 
-  function isLoggedIn(req, res, next){
+  function isLoggedIn(req, res, next) {
 
-    if(req.isAuthenticated()) return next();
+    if (req.isAuthenticated()) return next();
 
     // If not authenticated, then redirect to the signin page
     res.redirect("/creation");
   }
 
-  
+
   app.post('/creation', passport.authenticate('local-creation', {
 
-          // successRedirect: '/dashboard',
-          successRedirect: '/profile',
+    // successRedirect: '/dashboard',
+    successRedirect: '/profile',
 
-          failureRedirect: '/creation'
+    failureRedirect: '/creation'
 
-      }
+  }
 
   ));
 
 
   app.post('/signin', passport.authenticate('local-signin', {
 
-          // successRedirect: '/dashboard',
-          successRedirect: "/profile",
+    // successRedirect: '/dashboard',
+    successRedirect: "/profile",
 
-          failureRedirect: "/"
-      }
-  
+    failureRedirect: "/",
+
+    failureFlash: true
+  }
+
   ));
 
 
@@ -50,8 +52,8 @@ module.exports = function(app, passport) {
   app.get('/logout', authController.logout);
 
 
-   // Load index page
-   app.get("/", function (req, res) {
+  // Load index page
+  app.get("/", function (req, res) {
     res.render("index", {
       msg: "Welcome!",
     });
