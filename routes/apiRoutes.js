@@ -17,7 +17,7 @@ module.exports = function (app) {
 
         // var userEmail = null;
 
-        
+
 
         db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
             res.json(dbUser);
@@ -27,7 +27,7 @@ module.exports = function (app) {
 
     app.post("/api/user", function (req, res) {
 
-       
+
 
         var newUser = req.body;
 
@@ -122,8 +122,14 @@ module.exports = function (app) {
     });
 
     app.get("/api/projectAll", function (req, res) {
-        db.Project.findAll({}).then(function (dbProject) {
-           res.json(dbProject);
+        db.Project_language.findAll({
+            include: [{
+                model: db.Project
+            }]
+        }).then(function (dbProject) {
+            res.json(dbProject);
+
+            console.log(dbProject)
         });
     })
 }

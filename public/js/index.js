@@ -30,10 +30,7 @@ $(document).ready(function () {
     $("#login-modal").removeClass("is-active");
   });
 
-
-
   // Added Language field to Sign Up 
- 
 }); 
 
 

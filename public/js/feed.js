@@ -13,12 +13,14 @@ $(document).ready(function () {
             let content = $("<div class='content'>");
             let projName = $("<p>");
             let projDesc = $("<p>");
+            let projLang = $("<p>");
 
-            projName.html('Project Name: ' + project[i].project_name);
-            projDesc.html('Project description: ' + project[i].project_description);
+            projName.html('Project Name: ' + project[i].Project.project_name);
+            projDesc.html('Project description: ' + project[i].Project.project_description);
+            projLang.html('Project language(s): ' + project[i].language_name);
 
 
-            content.append(projName, projDesc);
+            content.append(projName, projDesc, projLang);
             box.append(content);
             column.append(box);
             feedDiv.append(column);

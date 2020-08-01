@@ -29,63 +29,55 @@
         <a class="navbar-item" href="/">
           Home
         </a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link navbar-item" href="">
-            Other pages
-          </a>
-          <div class="navbar-dropdown is-boxed">
-            <a class="navbar-item" href="/feed">
-              Feed
-            </a>
+        <a class="navbar-item" href="/feed">
+          Feed
+        </a>
+        <a class="navbar-item" href="/about">
+          About
+        </a>
+      </div>
+    </div>
 
-            <a class="navbar-item" href="/about">
-              About
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
+            <a class="bd-tw-button button is-danger is-hidden" id="logoutBtn">
+              <span class="icon is-small is-left">
+                <i class="fas fa-sign-in-alt"></i>
+              </span>
+              <span>
+                Logout
+              </span>
             </a>
-
-          </div>
+            <a class="bd-tw-button button is-success is-hidden" href="/profile" id="profileBtn">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <span>
+                Profile
+              </span>
+            </a>
+            <a class="bd-tw-button button is-danger" id="modal-btn">
+              <span class="icon is-small is-left">
+                <i class="fas fa-sign-in-alt"></i>
+              </span>
+              <span>
+                Login
+              </span>
+            </a>
+            <a class="bd-tw-button button is-success" href="/creation" id="signupBtn">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user-plus"></i>
+              </span>
+              <span>
+                Sign up
+              </span>
+            </a>
+          </p>
         </div>
       </div>
-
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="field is-grouped">
-            <p class="control">
-              <a class="bd-tw-button button is-danger is-hidden" id="logoutBtn">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-sign-in-alt"></i>
-                </span>
-                <span>
-                  Logout
-                </span>
-              </a>
-              <a class="bd-tw-button button is-success is-hidden" href="/profile" id="profileBtn">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-user"></i>
-                </span>
-                <span>
-                  Profile
-                </span>
-              </a>
-              <a class="bd-tw-button button is-danger" id="modal-btn">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-sign-in-alt"></i>
-                </span>
-                <span>
-                  Login
-                </span>
-              </a>
-              <a class="bd-tw-button button is-success" href="/creation" id="signupBtn">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-user-plus"></i>
-                </span>
-                <span>
-                  Sign up
-                </span>
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
+    </div>
 
     </div>
   </nav>
