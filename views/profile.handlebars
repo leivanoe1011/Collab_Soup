@@ -1,5 +1,6 @@
 <div class="container">
     <div class="box">
+
         <div class="columns">
             <div class="column is-2">
                 <figure class="image">
@@ -16,6 +17,7 @@
                 </div>
             </div>
         </div>
+
         <div class="columns">
             <div class="tabs is-centered is-boxed">
                 <ul>
@@ -40,6 +42,7 @@
                 </ul>
             </div>
         </div>
+
         <div class="box is-hidden" id="projects">
             <div class="columns">
                 <div class="column is-half is-offset-one-quarter">
@@ -71,39 +74,56 @@
                 </div>
             </div>
         </div>
+
         <div class="box is-hidden" id="projectCreateForm">
             <div class="columns">
                 <div class="column">
-                    <div class="field">
-                        <label class="label">Project Name</label>
-                        <div class="control">
-                            <input class="input" type="text" placeholder="name here">
+                    <form name="project" method="post" action="/api/project">
+                        <div class="field">
+                            <label class="label">Project Name</label>
+                            <div class="control">
+                                <input class="input" name="projectName" type="text" placeholder="name here">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="field">
-                        <label class="label">Project Languages</label>
-                        <div class="control">
-                            <textarea class="textarea" placeholder="languages here"></textarea>
-                        </div>
-                    </div>
+                        <div id="softwareLanguage">
 
-                    
-                    <div class="field">
-                        <label class="label">Project Description</label>
-                        <div class="control">
-                            <textarea class="textarea" placeholder="description here"></textarea>
                         </div>
-                    </div>
+                      
 
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <button class="button is-danger">Submit</button>
+                        <br>
+
+                        <div class="columns is-centered">
+                            <div class="field">
+                                <br>
+                                <p id="addMoreLanguages">Do you know any software languages?</p>
+                                <br>
+                                <span id="addSoftwareLanguage" class="icon is-large is-left">
+                                    <i class="fas fa-plus-circle"></i>
+                                </span>
+                            </div>
                         </div>
-                    </div>
+
+
+
+                        <div class="field">
+                            <label class="label">Project Description</label>
+                            <div class="control">
+                                <textarea class="textarea" name="projDesc" placeholder="description here"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-danger" type="submit" value="proj">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
