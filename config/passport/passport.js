@@ -10,7 +10,7 @@ module.exports = function(passport, user, userLanguage){
     var User_language = userLanguage; // Used to load the languages
     var LocalStrategy = require("passport-local").Strategy;
 
-    passport.use("local-signup", new LocalStrategy(
+    passport.use("local-creation", new LocalStrategy(
         {
             // by default, local strategy users username and password
             // we will override with email
@@ -37,7 +37,7 @@ module.exports = function(passport, user, userLanguage){
                 where: {email: email}
             }).then(function(user){
 
-                // if user exists, than exit
+                // if user exists, then exit
                 if(user){
                     return done(null, false, {
                         message: "That email is already taken"
