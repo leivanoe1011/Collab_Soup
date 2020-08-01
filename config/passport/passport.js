@@ -4,9 +4,10 @@
 // used to secure password
 var bCrypt = require("bcrypt-nodejs");
 
-module.exports = function(passport, user){
+module.exports = function(passport, user, userLanguage){
 
     var User = user;
+    var User_language = userLanguage;
     var LocalStrategy = require("passport-local").Strategy;
 
     passport.use("local-creation", new LocalStrategy(
@@ -51,11 +52,42 @@ module.exports = function(passport, user){
                     };
 
 
+                    var languageProperties = [];
+                    var propertyNames = Object.getOwnPropertyNames(req.body);
+
+                    for(var i = 0; i < propertyNames.length; i++){
+                        var propertyName = propertyNames[i].toLowerCase();
+                        if(propertyName.includes("language")){
+                            languageProperties.push(propertyName);
+                        }
+                    }
+
                     // if the user does not exist, than we create it
                     User.create(data).then(function(newUser, created){
                         if(!newUser){
                             return done(null, false);
                         }
+
+                        var userId = newUser.id;
+
+                        if(languageProperties.length > 0){
+
+                            for(var i = 0; i < languageProperties.length; i++){
+                                var lang = languageProperties[i];
+                                var userLang = {
+                                    UserId: userId,
+                                    language_name: req.body[lang]
+                                }
+                                User_language.create(userLang).then(function(userLanguage, created){
+                                    if(!userLanguage){
+                                        return done(null, false);
+                                    }
+                                });
+                                // languageProperties[lang] = req.body[lang];
+                            }
+
+                        }
+                      
 
                         if(newUser){
                             return done(null, newUser); // This needs to be captured by the calling function
