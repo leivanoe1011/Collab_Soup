@@ -73,9 +73,9 @@ $(document).ready(function () {
   });
 
 
+  // Added Language field to Sign Up 
   var languageInputCnt = 0;
 
-  // $(".addSoftwareLanguage").click(function(event))
   $(document).on("click", "#addSoftwareLanguage", function(event){
       event.preventDefault();
 
@@ -113,6 +113,7 @@ $(document).ready(function () {
 
       $(inputField).attr("placeholder", "Language");
 
+      
       $(span).append(icon);
 
 

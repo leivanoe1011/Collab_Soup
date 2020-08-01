@@ -76,7 +76,7 @@ require("./routes/apiRoutes")(app);
 
 //load passport strategies
 // models.user ... user will mirror the lowercase "user" defined in the user model
-require('./config/passport/passport.js')(passport, models.User);
+require('./config/passport/passport.js')(passport, models.User, models.User_language);
 
 
 
