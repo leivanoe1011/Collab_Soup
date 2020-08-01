@@ -1,33 +1,91 @@
-<div id="home">
+<div class="parallax"></div>
+
+
+<section class="main-section section ">
   <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
+    <div class="columns">
+      <div class="column is-full">
+        <header class="has-text-centered animate__animated animate__fadeInUp animate__slower">
+          <h1 class="title is-spaced has-text-weight-bold is-1 is-size-2-mobile">Collab Soup</h1>
+          <h2 class="title is-spaced has-text-weight-bold is-1 is-size-2-mobile">Where developers connect.</h2>
+          <img src="/images/Untitled (2).png" height="336" width="235">
+        </header>
+      </div>
+      <div class="column">
+
       </div>
     </div>
   </div>
-</div>
+  </br>
+  <div id="mainSec">
+    <div class="columns">
+      <div class="column is-half is">
+        <div class="box animate__animated animate__fadeInLeft animate__slower">
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-64x64">
+                <img src="/images/review1.jpg" alt="Image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>John Smith</strong> <small>totally real person</small>
+                  <br>
+                  "This website is amazing! 10/10"
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-offset-6 is-half">
+        <div class="box animate__animated animate__fadeInRight animate__slower">
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-64x64">
+                <img src="/images/review2.jpg" alt="Image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>Bob Johnson</strong> <small>I am real as well</small>
+                  <br>
+                  "NEVER SEEN ANYTHING LIKE IT IN MY ENTIRE LIFE!!!!! 9.7/10"
+                </p>
+              </div>
+
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<article>
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half">
+        <div class="box">
+          <div class="content is-medium">
+            <h1>
+              Connecting with other developers made easy
+            </h1>
+            <p>
+              If you want to connect with other developers to collaborate on projects to complete your goals in a timely
+              manner, then look no further.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</article>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script defer src="/js/all.js"></script>
 <script src="/js/index.js"></script>

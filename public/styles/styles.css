@@ -1,3 +1,39 @@
-.list-group-item {
-  line-height: 2.5;
+/*html{
+  background-color: #bfbfbf;
+}*/
+
+.foot-text{
+  color: #e64100;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url('../../images/parallax.jpg');
+  /* Full height */
+  height: 75vh; 
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*.background {
+  background: transparent;
+}*/
+
+
+#createCon {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#bodyView {
+  
+  min-height: 80vh;
+  margin-bottom: 10px;
+}
+
+#notFound{
+  margin-top: 50px;
 }
