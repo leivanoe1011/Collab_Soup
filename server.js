@@ -1,5 +1,4 @@
 
-var env = require("dotenv").config();
 
 var express = require("express");
 
@@ -27,6 +26,7 @@ var bodyParser = require('body-parser');
 
 
 // load is no longer a function, we must use config
+// The dotenv file will be ignored in PROD
 var env = require('dotenv').config()
 // var env = require("dotenv").load();
 
@@ -41,12 +41,15 @@ var PORT = process.env.PORT || 3000;
 // to access form inputs
 app.use(express.urlencoded({ extended: true }));
 
+
 // Middleware below allows the app to parse JSON
 app.use(express.json());
+
 
 // The Middleware below will begin reading the files from the 
 // Public Directory
 app.use(express.static("public"));
+
 
 // Handlebars
 app.engine(
@@ -69,7 +72,7 @@ app.use(passport.session()); // persistent login sessions
 
 
 // Routes
-require("./routes/htmlRoutes")(app,passport);
+require("./routes/htmlRoutes")(app, passport);
 
 require("./routes/apiRoutes")(app);
 
@@ -77,7 +80,6 @@ require("./routes/apiRoutes")(app);
 //load passport strategies
 // models.user ... user will mirror the lowercase "user" defined in the user model
 require('./config/passport/passport.js')(passport, models.User, models.User_language);
-
 
 
 // This will give us the option to restructure our Database based
@@ -88,12 +90,12 @@ var syncOptions = { force: false };
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 
-// if (env === "development") {
-//   // This will allow us to change our Database every time we initiate the server
-//   // IN the test environment
+if (process.env.NODE_ENV === "development") {
+    // This will allow us to change our Database every time we initiate the server
+    // IN the test environment
+    syncOptions.force = true;
 
-//   syncOptions.force = true;
-// }
+}
 
 // Starting the server, syncing our models ------------------------------------/
 models.sequelize.sync(syncOptions).then(function () {
@@ -107,4 +109,10 @@ models.sequelize.sync(syncOptions).then(function () {
 });
 
 module.exports = app;
+
+
+
+
+
+
 

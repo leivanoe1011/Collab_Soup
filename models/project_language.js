@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Project_language.associate = function(models){
-        Project_language.belongsTo(models.Project, {foreignKey: "project_id", onDelete: "cascade"});
+        Project_language.belongsTo(models.Project, {onDelete: "cascade"});
     };
     
     return Project_language;

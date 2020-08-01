@@ -6,8 +6,8 @@ var bCrypt = require("bcrypt-nodejs");
 
 module.exports = function(passport, user, userLanguage){
 
-    var User = user;
-    var User_language = userLanguage;
+    var User = user; // Used to load a new user or query existing user
+    var User_language = userLanguage; // Used to load the languages
     var LocalStrategy = require("passport-local").Strategy;
 
     passport.use("local-creation", new LocalStrategy(
@@ -44,6 +44,7 @@ module.exports = function(passport, user, userLanguage){
                     })
                 }
                 else{
+                    // Create the object to load to the User model
                     var data = {
                         email: email,
                         password: generateHash(password),
@@ -55,8 +56,11 @@ module.exports = function(passport, user, userLanguage){
                     var languageProperties = [];
                     var propertyNames = Object.getOwnPropertyNames(req.body);
 
+                    // Looking for any languages the user entered
                     for(var i = 0; i < propertyNames.length; i++){
+                        
                         var propertyName = propertyNames[i].toLowerCase();
+
                         if(propertyName.includes("language")){
                             languageProperties.push(propertyName);
                         }
@@ -74,10 +78,12 @@ module.exports = function(passport, user, userLanguage){
 
                             for(var i = 0; i < languageProperties.length; i++){
                                 var lang = languageProperties[i];
+                               
                                 var userLang = {
                                     UserId: userId,
                                     language_name: req.body[lang]
                                 }
+
                                 User_language.create(userLang).then(function(userLanguage, created){
                                     if(!userLanguage){
                                         return done(null, false);
@@ -88,7 +94,7 @@ module.exports = function(passport, user, userLanguage){
 
                         }
                       
-
+                        // If the user is created successfully
                         if(newUser){
                             return done(null, newUser); // This needs to be captured by the calling function
                         }
