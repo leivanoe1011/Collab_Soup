@@ -54,16 +54,16 @@ exports.profile = function (req, res) {
             dbUser[0].dataValues.linkedin = null;
         }
 
-        db.User_project.findAll({ where: { user_id: userId } }).then(function (dbProjects) {
+        // db.User_project.findAll({ where: { user_id: userId } }).then(function (dbProjects) {
 
-            console.log(dbProjects)
+            // console.log(dbProjects)
 
             res.render("profile", {
                 user: dbUser[0].dataValues,
-                projects: dbProjects,
+                // projects: dbProjects,
             });
 
-        });
+        // });
 
     });
 
