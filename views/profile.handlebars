@@ -57,14 +57,27 @@
                         <p>
                             Email: {{{ user.email }}}
                         </p>
+                        
                         {{#if user.github}}
                         <p>
-                            <a href="https://www.github.com/" target="_blank" rel="noopener">github</a>
+                             {{!-- Need to add an edit button --}}
+                            <a href={{{user.github}}} target="_blank" rel="noopener">github</a>
+                        </p>
+                        {{else}}
+                        <p>
+                            <a href="https://github.com">Add GitHub:</a>
                         </p>
                         {{/if}}
+
+
                         {{#if user.linkedin}}
                         <p>
-                            <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener">linkedin</a>
+                            {{!-- Need to add an edit button --}}
+                            <a href={{{user.linkedin}}} target="_blank" rel="noopener">linkedin</a>
+                        </p>
+                        {{else}}
+                        <p>
+                            <a href="https://linkedin.com">Add LinkedIn:</a>
                         </p>
                         {{/if}}
                     </div>
