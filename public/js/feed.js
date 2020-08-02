@@ -21,11 +21,11 @@ $(document).ready(function () {
 
             projName.html('Project Name: ' + project[i].project_name);
             projDesc.html('Project description: ' + project[i].project_description);
-            projLang.html('Project language(s): ')
+            projLang.html('Project language(s): ');
 
             for (var j = 0; j < project[i].Project_languages.length; j++) {
 
-                
+
 
                 projLangLength = project[i].Project_languages.length;
                 
