@@ -1,6 +1,9 @@
 
 var db = require("../models");
 
+// Flash was passed to App in the server js under app.use();
+// var flash = require("connect-flash");
+
 var authController = require('../controllers/htmlController.js');
 
 module.exports = function(app, passport) {
@@ -20,6 +23,22 @@ module.exports = function(app, passport) {
   }
 
   
+  app.get("/signin", (req, res, next) => {
+    const err = req.flash().error || [];
+    res.render("login", {err});
+  });
+
+
+  // The initial Signin will go here first. 
+  // If it fails, then it will go to the GET route above
+  app.post("/signin", passport.authenticate("local-signin", {
+      failureFlash: true, 
+      failureRedirect: "/signin"
+    }), (req, res, next) => {
+      res.redirect("/profile");
+  });
+
+
   app.post('/creation', passport.authenticate('local-creation', {
 
           // successRedirect: '/dashboard',
@@ -41,15 +60,30 @@ module.exports = function(app, passport) {
   // });
 
 
-  app.post('/signin', passport.authenticate('local-signin', {
+  // app.get('/signin', function(req, res, next) {
+  //   passport.authenticate('local-signin', function(err, user, info) {
+  //     if (err) { return next(err) }
+  //     if (!user) {
+  //       // *** Display message without using flash option
+  //       // re-render the login form with a message
+  //       return res.render('login', { message: info.message })
+  //     }
+      
+  //     return res.redirect("/profile");
+      
+  //   })(req, res, next);
+  // });
 
-          // successRedirect: '/dashboard',
-          successRedirect: "/profile",
 
-          failureRedirect: "/"
-      }
+  // app.post('/signin', passport.authenticate('local-signin', {
+
+  //         // successRedirect: '/dashboard',
+  //         successRedirect: "/profile",
+
+  //         failureRedirect: "/"
+  //     }
   
-  ));
+  // ));
 
   
 

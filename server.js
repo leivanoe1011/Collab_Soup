@@ -19,6 +19,8 @@ var passport = require("passport");
 var session = require("express-session");
 
 
+var flash = require("connect-flash");
+
 // This extracts the entire body part of an incoming 
 // request and exposes it in a format that is easier to work with. 
 // In this case, we will use the JSON format.
@@ -69,6 +71,8 @@ app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}))
 app.use(passport.initialize());
  
 app.use(passport.session()); // persistent login sessions
+
+app.use(flash());
 
 
 // Routes
