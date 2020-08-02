@@ -52,10 +52,62 @@ module.exports = function (app) {
 
 
     app.post("/api/project", function (req, res) {
-        var newProject = req.body;
+        var id = req.user.id
+        console.log(id)
+
+        var newProject = {
+            project_name: req.body.projectName,
+            project_description: req.body.projDesc
+        }
+        console.log(newProject)
+
         db.Project.create(newProject).then(function (dbProject) {
-            res.json(dbProject);
+            var projId = dbProject.id
+
+            var userProj = {
+                UserId: id,
+                ProjectId: projId
+            }
+
+            db.User_project.create(userProj).then(function () {});
+
+            var languageProperties = [];
+            var propertyNames = Object.getOwnPropertyNames(req.body);
+
+            for (var i = 0; i < propertyNames.length; i++) {
+
+                var propertyName = propertyNames[i].toLowerCase();
+
+                if (propertyName.includes("language")) {
+                    languageProperties.push(propertyName);
+                };
+            };
+
+            if (languageProperties.length > 0) {
+
+                for (var i = 0; i < languageProperties.length; i++) {
+                    var lang = languageProperties[i];
+                   
+                    var userLang = {
+                        ProjectId: dbProject.ProjectId,
+                        language_name: req.body[lang]
+                    }
+
+                    
+                    db.Project_language.create(userLang).then(function (userLanguage, created) {
+                        if (!userLanguage) {
+                            return done(null, false);
+                        }
+                    });
+                    
+                }
+
+            }
+
         });
+
+        res.redirect("/feed")
+
     });
 
 
@@ -69,6 +121,7 @@ module.exports = function (app) {
 
     app.post("/api/userProject", function (req, res) {
         var newUserProj = req.body;
+
         db.User_project.create(newUserProj).then(function (dbUserProject) {
             res.json(dbUserProject);
         });
@@ -122,9 +175,9 @@ module.exports = function (app) {
     });
 
     app.get("/api/projectAll", function (req, res) {
-        db.Project_language.findAll({
+        db.Project.findAll({
             include: [{
-                model: db.Project
+                model: db.Project_language
             }]
         }).then(function (dbProject) {
             res.json(dbProject);
