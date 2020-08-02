@@ -3,12 +3,21 @@ html{
 }
 
 .foot-text{
-  color: #e60000;
+  color: #e64100;
 }
 
-.background {
-  background: transparent;
+.parallax {
+  /* The image used */
+  background-image: url('../../images/parallax.jpg');
+  /* Full height */
+  height: 75vh; 
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 
 #createCon {
   margin-top: 10px;
@@ -16,8 +25,8 @@ html{
 }
 
 #bodyView {
-  margin-top: 10px;
-  min-height: 100vh;
+  
+  min-height: 80vh;
   margin-bottom: 10px;
 }
 

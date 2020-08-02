@@ -176,17 +176,13 @@ module.exports = function(passport, user, userLanguage){
     
                 if (!user) {
     
-                    return done(null, false, {
-                        message: 'Email does not exist'
-                    });
+                    return done(null, false, req.flash("error", "User not found"));
     
                 }
     
                 if (!isValidPassword(user.password, password)) {
     
-                    return done(null, false, {
-                        message: 'Incorrect password.'
-                    });
+                    return done(null, false, req.flash("error", "password not correct"));
     
                 }
     
