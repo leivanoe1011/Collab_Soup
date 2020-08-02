@@ -92,7 +92,7 @@ $(document).ready(function () {
         $("#softwareLanguage").append(column);
     });
 
-
-
-
+    $("#projCreateBtn").on("click", function(){
+        sessionStorage.setItem("created", true);
+    });
 })

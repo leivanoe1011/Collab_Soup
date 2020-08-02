@@ -69,9 +69,7 @@ module.exports = function (app) {
                 ProjectId: projId
             }
 
-            db.User_project.create(userProj).then(function (random) {
-
-            });
+            db.User_project.create(userProj).then(function () {});
 
             var languageProperties = [];
             var propertyNames = Object.getOwnPropertyNames(req.body);
@@ -101,12 +99,14 @@ module.exports = function (app) {
                             return done(null, false);
                         }
                     });
-                    // languageProperties[lang] = req.body[lang];
+                    
                 }
 
             }
 
         });
+
+        res.redirect("/feed")
 
     });
 

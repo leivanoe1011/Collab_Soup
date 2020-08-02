@@ -1,15 +1,19 @@
 $(document).ready(function () {
     // FEED PAGE
+
+    var feednum = 1;
+
     $.get("/api/projectAll", function (response) {
         project = response;
 
         console.log(project);
 
-
         const createBox = () => {
+            feednum++
+
             const feedDiv = $("#feedContent");
-            let column = $("<div class='column'>");
-            let box = $("<div class='box'>");
+            let column = $("<div class='column is-narrow'>");
+            let box = $("<div class='box is-half' id='feednum" + feednum + "'>");
             let content = $("<div class='content'>");
             let projName = $("<p>");
             let projDesc = $("<p>");
@@ -29,5 +33,10 @@ $(document).ready(function () {
         for (var i = 0; i < project.length; i++) {
             createBox();
         };
+
+        if (sessionStorage.getItem("created") === 'true') {
+            window.location.hash = "feednum" + feednum;
+            sessionStorage.removeItem("created");
+        }
     });
 });
