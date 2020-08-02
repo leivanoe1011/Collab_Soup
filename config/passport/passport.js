@@ -4,6 +4,8 @@
 // used to secure password
 var bCrypt = require("bcrypt-nodejs");
 
+
+
 module.exports = function(passport, user, userLanguage){
 
     var User = user; // Used to load a new user or query existing user
@@ -18,7 +20,8 @@ module.exports = function(passport, user, userLanguage){
             passwordField: 'password',
             // allows us to pass back the entire request to the callback
             // which is particularly useful for signing up
-            passReqToCallback: true 
+            passReqToCallback: true ,
+
         },
 
         // In this function we will handle storing a user's details. 

@@ -4,8 +4,7 @@
             <div class="column is-2">
                 <figure class="image">
 
-                    <img
-                        src="{{{user.picture}}}">
+                    <img src="{{{user.picture}}}">
 
                 </figure>
             </div>
@@ -14,10 +13,6 @@
                     <h1>
                         {{{ user.firstname }}} {{ user.lastname}}
                     </h1>
-
-                    <p>
-                        <small>Full stack web developer</small>
-                    </p>
                 </div>
             </div>
         </div>
@@ -36,10 +31,16 @@
                             <span>Projects</span>
                         </a>
                     </li>
+                    <li class="" id="projectCreate">
+                        <a>
+                            <span class="icon is-small"><i class="fas fa-ruler" aria-hidden="true"></i></span>
+                            <span>Create Project</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
-        <div class="box" id="projects">
+        <div class="box is-hidden" id="projects">
             <div class="columns">
                 <div class="column is-half is-offset-one-quarter">
                     <div class="content">
@@ -48,6 +49,7 @@
                 </div>
             </div>
         </div>
+
         <div class="box" id="info">
             <div class="columns">
                 <div class="column">
@@ -82,17 +84,42 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</br>
-<div class="container">
-    <div class="box">
-        <div class="columns">
-            <textarea class="textarea" placeholder="Type your message here"></textarea>
+        <div class="box is-hidden" id="projectCreateForm">
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Project Name</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="name here">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Project Languages</label>
+                        <div class="control">
+                            <textarea class="textarea" placeholder="languages here"></textarea>
+                        </div>
+                    </div>
+
+                    
+                    <div class="field">
+                        <label class="label">Project Description</label>
+                        <div class="control">
+                            <textarea class="textarea" placeholder="description here"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="button is-danger">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="button">Send</button>
     </div>
 </div>
+
 
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
