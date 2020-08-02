@@ -89,7 +89,7 @@ module.exports = function (app) {
                     var lang = languageProperties[i];
                    
                     var userLang = {
-                        ProjectId: projId,
+                        ProjectId: dbProject.ProjectId,
                         language_name: req.body[lang]
                     }
 
@@ -175,9 +175,9 @@ module.exports = function (app) {
     });
 
     app.get("/api/projectAll", function (req, res) {
-        db.Project_language.findAll({
+        db.Project.findAll({
             include: [{
-                model: db.Project
+                model: db.Project_language
             }]
         }).then(function (dbProject) {
             res.json(dbProject);

@@ -42,16 +42,19 @@
                 </ul>
             </div>
         </div>
-
-        <div class="box is-hidden" id="projects">
-            <div class="columns">
-                <div class="column is-half is-offset-one-quarter">
-                    <div class="content">
-                        <p>Project 1 placeholder</p>
+        {{#if projects}}
+            {{#each}}
+                <div class="box is-hidden" id="projects">
+                    <div class="columns">
+                        <div class="column is-half is-offset-one-quarter">
+                            <div class="content">
+                                <p>Project 1 placeholder</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            {{/each}}
+        {{/if}}
 
         <div class="box" id="info">
             <div class="columns">
@@ -62,12 +65,12 @@
                         </p>
                         {{#if user.github}}
                         <p>
-                            <a href="https://www.github.com/" target="_blank" rel="noopener">github</a>
+                            <a href="{{user.github}}" target="_blank" rel="noopener">github</a>
                         </p>
                         {{/if}}
                         {{#if user.linkedin}}
                         <p>
-                            <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener">linkedin</a>
+                            <a href="{{user.linkedin}}" target="_blank" rel="noopener">linkedin</a>
                         </p>
                         {{/if}}
                     </div>
@@ -89,7 +92,7 @@
                         <div id="softwareLanguage">
 
                         </div>
-                      
+
 
                         <br>
 
@@ -113,7 +116,8 @@
 
                         <div class="field is-grouped">
                             <div class="control">
-                                <button class="button is-danger" type="submit" value="proj" id="projCreateBtn">Submit</button>
+                                <button class="button is-danger" type="submit" value="proj"
+                                    id="projCreateBtn">Submit</button>
                             </div>
                         </div>
                     </form>
