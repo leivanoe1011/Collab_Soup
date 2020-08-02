@@ -46,7 +46,23 @@ module.exports = function(sequelize, DataTypes){
             defaultValue: 'active'
         },
 
-        picture: {type: DataTypes.STRING(2000), allowNull:true, defaultValue: "https://files.slack.com/files-pri/TUTP02EA0-F016Y5R2LDR/image.png"}
+        picture: {
+            type: DataTypes.STRING(2000), 
+            allowNull:true, 
+            defaultValue: "https://miro.medium.com/max/1932/1*DW3-mBLhOOAFIFUVYUkgsQ.png"
+        },
+
+        github: {
+            type: DataTypes.STRING(4000),
+            allowNull: true
+        },
+
+        linkedin: {
+            type: DataTypes.STRING(4000),
+            allowNull: true
+        }
+
+
     });
 
 

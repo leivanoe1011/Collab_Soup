@@ -9,34 +9,6 @@ module.exports = function (app) {
         var userEmail = req.body.email;
         var userPass = req.body.password;
 
-        // var userEmail = null;
-
-        if (userEmail === "") {
-            // It will quit
-            res.status(404).send("Email is Blank");
-        }
-
-
-
-
-        db.User.findAll({ where: { email: userEmail } }).then(function (dbUser) {
-
-            if (dbUser.length === 0) {
-                res.status(404).send("No email found");
-            }
-
-            res.json(dbUser);
-        });
-        // End of Then
-
-
-
-
-
-        db.User.findAll({ where: { email: userEmail, password: userPass } }).then(function (dbUser) {
-            res.json(dbUser);
-        });
-        // End of Then
     });
     // End of get by Email
 
@@ -45,7 +17,7 @@ module.exports = function (app) {
 
         // var userEmail = null;
 
-        
+
 
         db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
             res.json(dbUser);
@@ -55,7 +27,7 @@ module.exports = function (app) {
 
     app.post("/api/user", function (req, res) {
 
-       
+
 
         var newUser = req.body;
 
@@ -150,8 +122,14 @@ module.exports = function (app) {
     });
 
     app.get("/api/projectAll", function (req, res) {
-        db.Project.findAll({}).then(function (dbProject) {
-           res.json(dbProject);
+        db.Project_language.findAll({
+            include: [{
+                model: db.Project
+            }]
+        }).then(function (dbProject) {
+            res.json(dbProject);
+
+            console.log(dbProject)
         });
     })
 }

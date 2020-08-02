@@ -1,23 +1,61 @@
 $(document).ready(function () {
-    $("#accountCreate").click(function () {
-        let $accountEmail = $("#accountEmail").val();
-        let $emailConfirm = $("#emailConfirm").val();
-        let $accountPassword = $("#accountPassword").val();
-        let $passwordConfirm = $("#passwordConfirm").val();
-        let $accountUser = $("#accountUserName").val();
+    var languageInputCnt = 0;
 
-        var accountObj = {
-            user_name: $accountUser,
-            email: $accountEmail,
-            password: $accountPassword
-        };
+    $(document).on("click", "#addSoftwareLanguage", function (event) {
+        event.preventDefault();
 
-        if ($accountEmail === $emailConfirm && $passwordConfirm === $accountPassword) {
-            $("#accountConfirm").html("Successful!");
-            $.post("/api/user", accountObj);
-        } else {
-            $("#accountConfirm").html("Passwords and emails do not match properly!");
-            return false;
-        };
+        var breakLine = $("<br>");
+
+        var column = $("<div>");
+
+        $(column).addClass("columns is-centered");
+
+        var field = $("<div>");
+
+        $(field).addClass("field");
+
+        languageInputCnt++;
+
+        var iconField = $("<p>");
+
+        $(iconField).addClass("control has-icons-left");
+
+        var span = $("<span>");
+
+        $(span).addClass("icon is-large is-left");
+
+        var icon = $("<i>");
+
+        $(icon).addClass("fas fa-language");
+
+        var inputField = $("<input>");
+
+        $(inputField).addClass("programLanguage input is-large");
+
+        $(inputField).attr("name", `language${languageInputCnt}`);
+
+        $(inputField).attr("type", "text");
+
+        $(inputField).attr("placeholder", "Language");
+
+
+        $(span).append(icon);
+
+
+        $(iconField).append(inputField);
+
+        $(iconField).append(span)
+
+
+        $(field).append(iconField);
+
+
+        $(column).append(field);
+
+        $("#addMoreLanguages").text("Any more languages you would like to add?");
+
+        $("#softwareLanguage").append(breakLine);
+
+        $("#softwareLanguage").append(column);
     });
 })
