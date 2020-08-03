@@ -1,5 +1,6 @@
 
-
+ var propertyNames = ["email", "linkedin", "github", "about"];
+ 
 
 function random_id  () 
 {
@@ -26,7 +27,7 @@ function createTable (userObj){
     // Create body
     tbl+='<tbody>';
     // var propertyNames = Object.getOwnPropertyNames(userObj);
-    var propertyNames = ["email", "linkedin", "github", "about"];
+   
     
 
     for(var i = 0; i < propertyNames.length; i++){
@@ -257,11 +258,8 @@ $(document).ready(function () {
 		tbl_row.find('.row_data').each(function(index, val) 
 		{   
             var col_name = $(this).attr('col_name');  
-            console.log(`Column Name ${col_name}`);
             var col_val  =  $(this).html();
-            console.log(`Col Value ${col_val}`);
             arr[col_name] = col_val;
-            console.log(arr);
 		});
 		//--->get row data > end
 
@@ -276,9 +274,8 @@ $(document).ready(function () {
             data: arr,
             success: function(result){
                  // After update reload the page
-                // location.reload();  
-                console.log("In success ajax put")
-                console.log(result);
+                location.reload();  
+               
             }
 
         });
@@ -350,7 +347,7 @@ $(document).ready(function () {
 
         $("#softwareLanguage").append(column);
     });
-    
+
 
     $("#projCreateBtn").on("click", function(){
         sessionStorage.setItem("created", true);

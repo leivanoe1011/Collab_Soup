@@ -49,21 +49,10 @@ exports.profile = function (req, res) {
     db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
         // console.log(dbUser);
 
-        if (dbUser[0].dataValues.github === " " || dbUser[0].dataValues.linkedin === " ") {
-            dbUser[0].dataValues.github = null;
-            dbUser[0].dataValues.linkedin = null;
-        }
-
-        // db.User_project.findAll({ where: { user_id: userId } }).then(function (dbProjects) {
-
-            // console.log(dbProjects)
-
-            res.render("profile", {
-                user: dbUser[0].dataValues,
-                // projects: dbProjects,
-            });
-
-        // });
+        res.render("profile", {
+            user: dbUser[0].dataValues,
+            // projects: dbProjects,
+        });
 
     });
 
