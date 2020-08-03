@@ -1,8 +1,11 @@
 
 module.exports = function(sequelize, DataTypes) {
     var User_project = sequelize.define("User_project", {
-        // user_id: {type: DataTypes.INTEGER, allowNull: false, references: "users", referencesKey: "id"},
-        // project_id: {type: DataTypes.INTEGER, allowNull: false, references: "projects", referencesKey: "id"}
+
+        // If project owner = 1 
+        // Not project owner = 0
+        project_owner: {type: DataTypes.INTEGER, allowNull: false, defaultValue: 0}
+
     });
 
     User_project.associate = function(models){

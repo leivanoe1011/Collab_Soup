@@ -71,6 +71,7 @@ function createTable (userObj){
 
 
 $(document).ready(function () {
+    
     sessionStorage.setItem('loggedin', true);
 
 
@@ -101,60 +102,6 @@ $(document).ready(function () {
         $("#info").addClass("is-hidden");
     });
 
-    var languageInputCnt = 0;
-
-    $(document).on("click", "#addSoftwareLanguage", function (event) {
-        event.preventDefault();
-
-        var breakLine = $("<br>");
-
-        var column = $("<div>");
-
-        $(column).addClass("columns is-centered");
-
-        var field = $("<div>");
-
-        $(field).addClass("field");
-
-        languageInputCnt++;
-
-        var iconField = $("<p>");
-
-        $(iconField).addClass("control has-icons-left");
-
-        var span = $("<span>");
-
-        $(span).addClass("icon is-large is-left");
-
-        var icon = $("<i>");
-
-        $(icon).addClass("fas fa-language");
-
-        var inputField = $("<input>");
-
-
-    $(document).on("click", "#linkedInEdit", function(event){
-        event.preventDefault();
-
-        var linkedInUpdate = {
-            data: "In Click HTML"
-        }
-
-        $.ajax({
-            url: "/api/userLinkedIn/",
-            type: "PUT",
-            data: linkedInUpdate,
-            success: function(result){
-                 // After update reload the page
-                // location.reload();  
-                console.log("In success ajax put")
-                console.log(result);
-            }
-
-        });
- 
-    });
-
 
     $.ajax({
         url: "/api/userById/",
@@ -166,7 +113,6 @@ $(document).ready(function () {
         }
     })
  
-
 
 	//--->make div editable > start
 	$(document).on('click', '.row_data', function(event) 
@@ -345,6 +291,43 @@ $(document).ready(function () {
 	//--->save whole row entery > end
 
 
+    var languageInputCnt = 0;
+
+    $(document).on("click", "#addSoftwareLanguage", function (event) {
+        event.preventDefault();
+
+        var breakLine = $("<br>");
+
+        var column = $("<div>");
+
+        $(column).addClass("columns is-centered");
+
+        var field = $("<div>");
+
+        $(field).addClass("field");
+
+        languageInputCnt++;
+
+        var iconField = $("<p>");
+
+        $(iconField).addClass("control has-icons-left");
+
+        var span = $("<span>");
+
+        $(span).addClass("icon is-large is-left");
+
+        var icon = $("<i>");
+
+        $(icon).addClass("fas fa-language");
+
+        var inputField = $("<input>");
+
+        $(inputField).addClass("programLanguage input is-large");
+
+        $(inputField).attr("name", `language${languageInputCnt}`);
+
+        $(inputField).attr("type", "text");
+
         $(inputField).attr("placeholder", "Language");
 
 
@@ -367,8 +350,11 @@ $(document).ready(function () {
 
         $("#softwareLanguage").append(column);
     });
+    
 
     $("#projCreateBtn").on("click", function(){
         sessionStorage.setItem("created", true);
     });
 })
+
+
