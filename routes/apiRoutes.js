@@ -23,15 +23,16 @@ module.exports = function (app, passport) {
     });
     // End of get by Email
 
-    // app.get("/api/userById/:id", function (req, res) {
-    app.get("/api/userById/", function (req, res) {
+
+    // We get the ID from the Session
+    // Only a logged in User may update the user
+    app.get("/api/userById/", isLoggedIn, function (req, res) {
         var userId = req.user.id;
 
         // var userEmail = null;
 
         db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
-            console.log("In User By Id app get");
-            console.log(dbUser);
+
             res.json(dbUser);
         });
     })
@@ -145,19 +146,29 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.put("/api/userLinkedIn/", function(req, res){
+    
+    // We get the ID from the Session
+    // Only a logged in User may update the user
+    app.put("/api/userUpdate/", function(req, res){
         
         // console.log(req);
-        console.log("In userLinkedIn put");
-        // var userId = req.User.id;
+        var userId = req.user.id;
+        var reqObj = req.body;
+        var propertyNames = Object.getOwnPropertyNames(reqObj)
+        var columnToUpdate = propertyNames[0];
+        var valueOfCol = reqObj[columnToUpdate];
+
+        var updateStatement ={};
+        updateStatement[columnToUpdate] = valueOfCol
+
         
-    //     db.User(
-    //         {linkedin: req.body.linkedin},
-    //         {where: {id: userId}}
-    //     )
-    //     .then(function(dbUser){
-    //         res.json(dbUser);
-    //     })
+        db.User.update(
+            updateStatement,
+            {where: {id: userId}}
+        )
+        .then(function(dbUser){
+            res.json(dbUser);
+        })
 
     });
 }

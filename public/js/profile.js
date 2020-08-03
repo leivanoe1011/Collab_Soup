@@ -17,6 +17,7 @@ function createTable (userObj){
     // Create header
     tbl+='<thead>';
         tbl+='<tr>';
+        tbl+='<th> </th>';
         tbl+='<th>Developer Info</th>';
         tbl+='<th>Options</th>' // Here we load the edit
         tbl+='</tr>';
@@ -34,7 +35,10 @@ function createTable (userObj){
         var propertyValue = userObj[propertyName]; 
         //loop through ajax row data
         tbl +='<tr row_id="'+row_id+'">';
-            tbl +='<td ><div class="row_data" edit_type="click" col_name="' + propertyName + '">' + propertyName + ':' + propertyValue + '</div></td>';
+
+            tbl+='<td>' + propertyName + ':</td>';
+
+            tbl +='<td ><div class="row_data" edit_type="click" col_name="' + propertyName + '">' + propertyValue + '</div></td>';
 
 
             //--->edit options > start
@@ -275,14 +279,32 @@ $(document).ready(function () {
 		var arr = {}; 
 		tbl_row.find('.row_data').each(function(index, val) 
 		{   
-			var col_name = $(this).attr('col_name');  
-			var col_val  =  $(this).html();
-			arr[col_name] = col_val;
+            var col_name = $(this).attr('col_name');  
+            console.log(`Column Name ${col_name}`);
+            var col_val  =  $(this).html();
+            console.log(`Col Value ${col_val}`);
+            arr[col_name] = col_val;
+            console.log(arr);
 		});
 		//--->get row data > end
 
-		//use the "arr"	object for your ajax call
-		$.extend(arr, {row_id:row_id});
+        //use the "arr"	object for your ajax call
+        // Below adding row_id to the object
+        // $.extend(arr, {row_id:row_id});
+
+        
+        $.ajax({
+            url: "/api/userUpdate/",
+            type: "PUT",
+            data: arr,
+            success: function(result){
+                 // After update reload the page
+                // location.reload();  
+                console.log("In success ajax put")
+                console.log(result);
+            }
+
+        });
 
 		//out put to show
 		$('.post_msg').html( '<pre class="bg-success">'+JSON.stringify(arr, null, 2) +'</pre>')
