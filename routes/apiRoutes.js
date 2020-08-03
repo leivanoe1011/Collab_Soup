@@ -143,11 +143,68 @@ module.exports = function (app, passport) {
 
 
     // get all projects by User
-    app.get("/api/userProject/:id", function (req, res) {
-        var userId = req.params.id;
+    app.get("/api/userProject/", function (req, res) {
+        
+        var sessionUserId = req.user.id;
 
-        db.User_project.findAll({ where: { user_id: userId } }).then(function (dbUserProject) {
-            res.json(dbUserProject);
+        db.User_project.findAll({ 
+            where: { UserId: sessionUserId },
+            include: [{
+                model: db.Project
+            }]
+                
+        })
+        .then(function (dbUserProject) {
+        
+            //var projectObjects = {}
+
+            console.log("In then of API GET user project");
+            // db.Project_language.findAl({where: {id: }})
+
+            for(var i = 0; i < dbUserProject.length; i++){
+                console.log("In for loop")
+                
+                var projectObject = {}
+                
+                var newObj = dbUserProject[i].dataValues;
+                // console.log(newObj);
+
+                projectObject["ProjectOwner"] = newObj.project_owner;
+                projectObject["UserId"] = newObj.UserId;
+
+                var currentProjectId = newObj.ProjectId
+                projectObject["ProjectId"] = currentProjectId;
+                projectObject["ProjectName"] = newObj.Project.dataValues.project_name;
+
+                var projectLanguages = [];
+
+                db.Project_language.findAll({ where : {ProjectId: currentProjectId}})
+                .then(function(prjLang){
+                    console.log("In Project Languages");
+                    // console.log(prjLang);
+                    // create a for loop and push projectLanguages
+                    for(var i = 0; i < prjLang.length; i++){
+                        console.log("In for loop for languages")
+                        var newLang = prjLang[i].dataValues;
+                        console.log(newLang);
+                        var lang = newLang.language_name;
+                        console.log(lang);
+
+                        projectLanguages.push(lang)
+                    }
+
+                    console.log(projectLanguages);
+                
+                    projectObject["ProjectLanguages"] = projectLanguages
+
+                    console.log("Project Object")
+                    console.log(projectObject);
+                });
+                
+            }
+            // End of For Loop on dbUserProject
+            
+            // res.json(dbUserProject);
         });
     });
 
