@@ -21,6 +21,7 @@ $(document).ready(function () {
             let projName = $("<p>");
             let projDesc = $("<p>");
             let projLang = $("<p>");
+            let projPart = $("<p>");
             var projJoin = $("<a class='button is-danger projJoinBtn' id='" + projNum + "'>")
 
             projJoin.html("Join")
@@ -28,6 +29,8 @@ $(document).ready(function () {
             projName.html('Project Name: ' + project[i].project_name);
             projDesc.html('Project description: ' + project[i].project_description);
             projLang.html('Project language(s): ');
+            projPart.html('Project participant(s): ')
+
 
             for (var j = 0; j < project[i].Project_languages.length; j++) {
                 projLangLength = project[i].Project_languages.length;
@@ -41,7 +44,23 @@ $(document).ready(function () {
             };
 
 
-            content.append(projName, projDesc, projLang, projJoin);
+
+            for (var o = 0; o < project[i].User_projects.length; o++) {
+
+                var userIdObj = {
+                    id: project[i].User_projects[o].UserId
+                };
+
+                $.post("/api/users/", userIdObj, function(response){
+                    console.log(response);
+
+                    projPart.append(response + " ");
+                });
+            }
+
+
+
+            content.append(projName, projDesc, projLang, projPart, projJoin);
             box.append(content);
             column.append(box);
             feedDiv.append(column);

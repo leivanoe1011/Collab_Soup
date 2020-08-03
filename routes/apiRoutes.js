@@ -181,10 +181,11 @@ module.exports = function (app, passport) {
     });
 
 
-    app.get("/api/project/:id", function (req, res) {
-        var projectId = req.params.id;
-        db.Project.findAll({ where: { id: projectId } }).then(function (dbProject) {
-            res.json(dbProject);
+    app.post("/api/users/", function (req, res) {
+        
+    
+        db.User.findAll({ where: { id: req.body.id } }).then(function (dbUsers) {
+            res.json(dbUsers[0].dataValues.firstname);
         });
     });
 
@@ -227,7 +228,7 @@ module.exports = function (app, passport) {
 
     });
 
-    app.post("/api/joinProject",  function (req, res) {
+    app.post("/api/joinProject", function (req, res) {
 
         var newObj = req.body
 
@@ -235,10 +236,10 @@ module.exports = function (app, passport) {
 
         newObj.UserId = useraddedId;
 
-        console.log(newObj);
+   
 
         db.User_project.create(newObj).then(function (dbProjId) {
-            console.log(dbProjId);
+         
         });
     });
 }
