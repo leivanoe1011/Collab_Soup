@@ -105,6 +105,8 @@ module.exports = function (app, passport) {
                         language_name: req.body[lang]
                     }
 
+                    console.log("In Project Language");
+                    console.log(userLang);
                     
                     db.Project_language.create(userLang).then(function (userLanguage, created) {
                         if (!userLanguage) {
