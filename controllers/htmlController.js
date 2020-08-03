@@ -48,7 +48,7 @@ exports.profile = function (req, res, res2) {
 
     db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
         // console.log(dbUser);
-        
+        console.log(dbUser[0].dataValues)
         res.render("profile", { user: dbUser[0].dataValues});
         
     });

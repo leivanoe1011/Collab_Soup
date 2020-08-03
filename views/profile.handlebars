@@ -59,25 +59,36 @@
                         </p>
                         
                         {{#if user.github}}
-                        <p>
+                        <p class="control has-icons-right">
                              {{!-- Need to add an edit button --}}
-                            <a href={{{user.github}}} target="_blank" rel="noopener">github</a>
+                            <span>GitHub: <a href={{{user.github}}} target="_blank" rel="noopener">{{{user.github}}}</a></span>
+                            <i id="githubEdit" class="fas fa-edit"></i>
+                            
                         </p>
                         {{else}}
-                        <p>
-                            <a href="https://github.com">Add GitHub:</a>
+                        <p class="control has-icons-right">
+                            <span>GitHub</span> 
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-plus"></i>
+                            </span>
                         </p>
                         {{/if}}
 
+                        <br>
 
                         {{#if user.linkedin}}
-                        <p>
+                        <p class="control has-icons-right">
                             {{!-- Need to add an edit button --}}
-                            <a href={{{user.linkedin}}} target="_blank" rel="noopener">linkedin</a>
+                            <span>LinkedIn: <a href={{{user.linkedin}}} target="_blank" rel="noopener">{{{user.linkedin}}} </a></span>
+                            <i id="linkedInEdit" class="fas fa-edit"></i>
                         </p>
                         {{else}}
                         <p>
-                            <a href="https://linkedin.com">Add LinkedIn:</a>
+                            <p class="control has-icons-right">
+                            <span>LinkedIn</span> 
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-plus"></i>
+                            </span>
                         </p>
                         {{/if}}
                     </div>

@@ -33,6 +33,12 @@ $(document).ready(function () {
     });
 
 
+    $(document).on("click", "#linkedInEdit", function(event){
+        event.preventDefault();
+
+
+        // After update reload the page
+    });
 
 
 
