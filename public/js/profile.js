@@ -71,6 +71,7 @@ function createTable (userObj){
 
 
 $(document).ready(function () {
+    
     sessionStorage.setItem('loggedin', true);
 
 
@@ -112,7 +113,6 @@ $(document).ready(function () {
         }
     })
  
-
 
 	//--->make div editable > start
 	$(document).on('click', '.row_data', function(event) 
@@ -291,7 +291,6 @@ $(document).ready(function () {
 	//--->save whole row entery > end
 
 
-
     var languageInputCnt = 0;
 
     $(document).on("click", "#addSoftwareLanguage", function (event) {
@@ -323,6 +322,11 @@ $(document).ready(function () {
 
         var inputField = $("<input>");
 
+        $(inputField).addClass("programLanguage input is-large");
+
+        $(inputField).attr("name", `language${languageInputCnt}`);
+
+        $(inputField).attr("type", "text");
 
         $(inputField).attr("placeholder", "Language");
 
@@ -346,7 +350,7 @@ $(document).ready(function () {
 
         $("#softwareLanguage").append(column);
     });
-    // End of addSoftwareLanguage
+    
 
     $("#projCreateBtn").on("click", function(){
         sessionStorage.setItem("created", true);
