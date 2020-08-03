@@ -58,25 +58,10 @@
 
         <div class="box" id="info">
             <div class="columns">
-                <div class="column">
-                    <div class="content">
-                        <p>
-                            Email: {{{ user.email }}}
-                        </p>
-                        
-                        {{#if user.github}}
-                        <p>
-                            <a href="{{user.github}}" target="_blank" rel="noopener">github</a>
-                        </p>
-                        {{/if}}
 
+                <div class="column tbl_user_data">
+                    
 
-                        {{#if user.linkedin}}
-                        <p>
-                            <a href="{{user.linkedin}}" target="_blank" rel="noopener">linkedin</a>
-                        </p>
-                        {{/if}}
-                    </div>
                 </div>
             </div>
         </div>
@@ -137,3 +122,4 @@
 <script defer src="/js/all.js"></script>
 <script src="/js/profile.js"></script>
 <script src="/js/index.js"></script>
+

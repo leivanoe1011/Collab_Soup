@@ -52,44 +52,6 @@ module.exports = function (app, passport) {
   ));
 
 
-  // app.post('/signin', function(req, res, next){
-  //   passport.authenticate('local-signin', function(err, user, info){
-
-
-
-
-  //   });
-  // });
-
-
-  // app.get('/signin', function(req, res, next) {
-  //   passport.authenticate('local-signin', function(err, user, info) {
-  //     if (err) { return next(err) }
-  //     if (!user) {
-  //       // *** Display message without using flash option
-  //       // re-render the login form with a message
-  //       return res.render('login', { message: info.message })
-  //     }
-      
-  //     return res.redirect("/profile");
-      
-  //   })(req, res, next);
-  // });
-
-
-  // app.post('/signin', passport.authenticate('local-signin', {
-
-  //         // successRedirect: '/dashboard',
-  //         successRedirect: "/profile",
-
-  //         failureRedirect: "/"
-  //     }
-  
-  // ));
-
-
-  
-
   // make sure the page can only be accessed when a user is logged into the session
   // app.get('/dashboard', isLoggedIn, authController.dashboard);
   app.get('/profile', isLoggedIn, authController.profile);

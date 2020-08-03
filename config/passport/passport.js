@@ -52,7 +52,10 @@ module.exports = function(passport, user, userLanguage){
                         email: email,
                         password: generateHash(password),
                         firstname: req.body.firstname, // might have to rename first name to "name"
-                        lastname: req.body.lastname // Might need to delete last name
+                        lastname: req.body.lastname, // Might need to delete last name
+                        github: req.body.github,
+                        linkedin: req.body.linkedin
+
                     };
 
 
