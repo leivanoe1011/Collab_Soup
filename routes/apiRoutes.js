@@ -64,12 +64,8 @@ module.exports = function (app, passport) {
 
 
     app.post("/api/project", function (req, res) {
-        
-        console.log("In post api project");
-        
-        console.log(req.body);
-
-        var id = req.user.id
+                
+        var loggedUserId = req.user.id
 
 
         var newProject = {
@@ -82,8 +78,9 @@ module.exports = function (app, passport) {
             var projId = dbProject.id
 
             var userProj = {
-                UserId: id,
-                ProjectId: projId
+                UserId: loggedUserId,
+                ProjectId: projId,
+                project_owner: 1 // Created the project
             }
 
             db.User_project.create(userProj).then(function (dbUserProj) {});
@@ -110,9 +107,6 @@ module.exports = function (app, passport) {
                         ProjectId: projId,
                         language_name: req.body[lang]
                     }
-
-                    console.log("In Project Language");
-                    console.log(userLang);
                     
                     db.Project_language.create(userLang).then(function (userLanguage, created) {
                         if (!userLanguage) {
