@@ -1,8 +1,19 @@
 
 var db = require("../models");
 
-module.exports = function (app) {
+module.exports = function (app, passport) {
 
+
+    // Validate if user is logged in
+    function isLoggedIn(req, res, next) {
+
+        if (req.isAuthenticated()) return next();
+
+        // If not authenticated, then redirect to the signin page
+        res.redirect("/creation");
+    }
+
+    
     // Get all Users
     app.post("/api/userByEmail", function (req, res) {
 
@@ -12,21 +23,21 @@ module.exports = function (app) {
     });
     // End of get by Email
 
-    app.get("/api/userById/:id", function (req, res) {
-        var userId = req.params.id;
+    // app.get("/api/userById/:id", function (req, res) {
+    app.get("/api/userById/", function (req, res) {
+        var userId = req.user.id;
 
         // var userEmail = null;
 
-
-
         db.User.findAll({ where: { id: userId } }).then(function (dbUser) {
+            console.log("In User By Id app get");
+            console.log(dbUser);
             res.json(dbUser);
         });
     })
 
 
     app.post("/api/user", function (req, res) {
-
 
 
         var newUser = req.body;
@@ -121,6 +132,7 @@ module.exports = function (app) {
         });
     });
 
+
     app.get("/api/projectAll", function (req, res) {
         db.Project_language.findAll({
             include: [{
@@ -131,6 +143,22 @@ module.exports = function (app) {
 
             console.log(dbProject)
         });
-    })
+    });
+
+    app.put("/api/userLinkedIn/", function(req, res){
+        
+        // console.log(req);
+        console.log("In userLinkedIn put");
+        // var userId = req.User.id;
+        
+    //     db.User(
+    //         {linkedin: req.body.linkedin},
+    //         {where: {id: userId}}
+    //     )
+    //     .then(function(dbUser){
+    //         res.json(dbUser);
+    //     })
+
+    });
 }
 

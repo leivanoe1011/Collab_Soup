@@ -81,9 +81,10 @@ app.use(flash());
 
 
 // Routes
+// Need to pass passport to access session Ids
 require("./routes/htmlRoutes")(app, passport);
 
-require("./routes/apiRoutes")(app);
+require("./routes/apiRoutes")(app, passport);
 
 
 //load passport strategies

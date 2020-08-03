@@ -52,46 +52,8 @@
 
         <div class="box" id="info">
             <div class="columns">
-                <div class="column">
-                    <div class="content">
-                        <p>
-                            Email: {{{ user.email }}}
-                        </p>
-                        
-                        {{#if user.github}}
-                        <p class="control has-icons-right">
-                             {{!-- Need to add an edit button --}}
-                            <span>GitHub: <a href={{{user.github}}} target="_blank" rel="noopener">{{{user.github}}}</a></span>
-                            <i id="githubEdit" class="fas fa-edit"></i>
-                            
-                        </p>
-                        {{else}}
-                        <p class="control has-icons-right">
-                            <span>GitHub</span> 
-                            <span class="icon is-small is-right">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                        </p>
-                        {{/if}}
-
-                        <br>
-
-                        {{#if user.linkedin}}
-                        <p class="control has-icons-right">
-                            {{!-- Need to add an edit button --}}
-                            <span>LinkedIn: <a href={{{user.linkedin}}} target="_blank" rel="noopener">{{{user.linkedin}}} </a></span>
-                            <i id="linkedInEdit" class="fas fa-edit"></i>
-                        </p>
-                        {{else}}
-                        <p>
-                            <p class="control has-icons-right">
-                            <span>LinkedIn</span> 
-                            <span class="icon is-small is-right">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                        </p>
-                        {{/if}}
-                    </div>
+                <div class="column tbl_user_data">
+                    
                 </div>
             </div>
         </div>
@@ -137,3 +99,4 @@
 <script defer src="/js/all.js"></script>
 <script src="/js/profile.js"></script>
 <script src="/js/index.js"></script>
+
