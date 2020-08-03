@@ -71,6 +71,20 @@ function createTable (userObj){
 }
 
 
+function loadUserProjects(){
+
+    $.ajax({
+        url: "/api/userById/",
+        type: "GET",
+        success: function(result){
+            var userObj = result[0]
+
+            createTable(userObj);
+        }
+    })
+    
+}
+
 $(document).ready(function () {
     
     sessionStorage.setItem('loggedin', true);
