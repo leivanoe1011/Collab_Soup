@@ -74,15 +74,14 @@ function createTable (userObj){
 function loadUserProjects(){
 
     $.ajax({
-        url: "/api/userById/",
+        url: "/api/userProject/",
         type: "GET",
         success: function(result){
             var userObj = result[0]
 
-            createTable(userObj);
         }
     })
-    
+
 }
 
 $(document).ready(function () {
@@ -97,6 +96,8 @@ $(document).ready(function () {
         $("#projects").removeClass("is-hidden");
         $("#projectCreateForm").addClass("is-hidden");
         $("#info").addClass("is-hidden");
+
+        loadUserProjects();
     });
 
     $("#aboutSec").click(function () {
