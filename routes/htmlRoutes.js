@@ -19,7 +19,7 @@ module.exports = function (app, passport) {
     if (req.isAuthenticated()) return next();
 
     // If not authenticated, then redirect to the signin page
-    res.redirect("/creation");
+    res.redirect("/signin");
   }
 
   

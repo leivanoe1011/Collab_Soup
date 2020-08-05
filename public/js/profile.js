@@ -71,14 +71,32 @@ function createTable (userObj){
 }
 
 
-function loadUserProjects(){
+function loadUserProjects(result){
+
+    console.log("In loadUserProject")
+    var userProjects = result;
+
+    console.log(userProjects);
+
+    for(var i = 0; i < userProjects.length; i++){
+        console.log("In for Loop")
+        var currentPrj = userProjects[i];
+        console.log(currentPrj);
+    }
+
+}
+
+
+function getUserProjects(){
 
     $.ajax({
         url: "/api/userProject/",
         type: "GET",
         success: function(result){
-            var userObj = result[0]
 
+            var userObj = result;
+
+            loadUserProjects(userObj);
         }
     })
 
@@ -97,7 +115,7 @@ $(document).ready(function () {
         $("#projectCreateForm").addClass("is-hidden");
         $("#info").addClass("is-hidden");
 
-        loadUserProjects();
+        getUserProjects();
     });
 
     $("#aboutSec").click(function () {
