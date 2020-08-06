@@ -41,7 +41,7 @@ exports.feed = function (req, res) {
 
 exports.profile = function (req, res) {
 
-    // console.log(req);
+
 
     var userId = req.user.id
 
@@ -50,8 +50,10 @@ exports.profile = function (req, res) {
         // console.log(dbUser);
 
         res.render("profile", {
+
             user: dbUser[0].dataValues
             // projects: dbProjects,
+
         });
 
     });
@@ -71,6 +73,3 @@ exports.logout = function (req, res) {
 exports.login = function(req, res){
     res.render("login");
 }
-
-
-
