@@ -149,9 +149,11 @@ function getUserInfo(){
     })
 }
 
+
 function initialProfileConfig(){
     $("#projInfo").addClass("is-hidden");
 }
+
 
 $(document).ready(function () {
     
