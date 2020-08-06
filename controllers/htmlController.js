@@ -50,8 +50,10 @@ exports.profile = function (req, res) {
         // console.log(dbUser);
 
         res.render("profile", {
-            user: dbUser[0].dataValues,
-           
+
+            user: dbUser[0].dataValues
+            // projects: dbProjects,
+
         });
 
     });

@@ -8,7 +8,6 @@ var exphbs = require("express-handlebars");
 // Here, we are importing the models, and then calling the Sequelize sync function.
 var models = require("./models");
 
-var flash = require("connect-flash");
 
 
 
