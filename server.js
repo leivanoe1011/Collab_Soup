@@ -31,7 +31,7 @@ var bodyParser = require('body-parser');
 
 // load is no longer a function, we must use config
 // The dotenv file will be ignored in PROD
-var env = require('dotenv').config()
+var env = require('dotenv').config();
 // var env = require("dotenv").load();
 
 
@@ -68,10 +68,10 @@ app.set("view engine", "handlebars");
 
 // express session and passport session add them both as middleware.
 // session secret
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); 
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
 app.use(passport.initialize());
- 
+
 app.use(passport.session()); // persistent login sessions\
 
 app.use(flash());
@@ -94,7 +94,7 @@ require('./config/passport/passport.js')(passport, models.User, models.User_lang
 // This will give us the option to restructure our Database based
 // ON changes to the Sequelizer
 
-var syncOptions = { force: false};
+var syncOptions = { force: true };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
