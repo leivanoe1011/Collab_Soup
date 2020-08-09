@@ -1,4 +1,3 @@
-
 var db = require("../models");
 
 module.exports = function (app, passport) {
@@ -142,22 +141,24 @@ module.exports = function (app, passport) {
     });
 
 
-    app.get("/api/userProject/", function(req, res){
+    app.get("/api/userProject/", function (req, res) {
         console.log("In user project get");
-        
+
         var sessionUserId = req.user.id;
 
         console.log(sessionUserId)
 
         db.User_project.findAll(
-            {where: {UserId: sessionUserId}, 
-                include:[{model: db.Project, 
-                    include:[{model: db.Project_language}]
+            {
+                where: { UserId: sessionUserId },
+                include: [{
+                    model: db.Project,
+                    include: [{ model: db.Project_language }]
                 }]
             })
-        .then(function(result){
-            res.json(result);
-        })
+            .then(function (result) {
+                res.json(result);
+            })
     });
 
 
@@ -190,13 +191,26 @@ module.exports = function (app, passport) {
     });
 
 
+
     app.post("/api/users/", function (req, res) {
-        
-    
+
+
+
+        var newArr = [];
+
         db.User.findAll({ where: { id: req.body.id } }).then(function (dbUsers) {
-            res.json(dbUsers[0].dataValues.firstname);
+
+            for (var i = 0; i < dbUsers.length; i++) {
+                newArr.push(dbUsers[i].dataValues.firstname)
+            };
+
+        }).then(function () {
+            res.json(newArr);
         });
     });
+
+
+
 
 
     app.get("/api/projectAll", function (req, res) {
@@ -242,112 +256,111 @@ module.exports = function (app, passport) {
     // get all projects by User
     // Not used
     app.get("/api/userProject2/", function (req, res) {
-        
+
         console.log("In user project get");
-        
+
         var sessionUserId = req.user.id;
 
         console.log(sessionUserId)
 
-       
-        db.User_project.findAll({ 
+
+        db.User_project.findAll({
             where: { UserId: sessionUserId },
             include: [{
                 model: db.Project
             }]
-                
+
         })
-        .then(function (dbUserProject) {
-            
-            // Load all the projects for a user
-            var result = [];
+            .then(function (dbUserProject) {
+
+                // Load all the projects for a user
+                var result = [];
 
 
-            //var projectObjects = {}
+                //var projectObjects = {}
 
-            console.log("In then of API GET user project");
-            // db.Project_language.findAl({where: {id: }})
-
-
-            // Below we are capturing all the Projects the User belongs to
-            for(var i = 0; i < dbUserProject.length; i++){
-                
-                var projectObject = {}
-                
-                var newObj = dbUserProject[i].dataValues;
-                // console.log(newObj);
-
-                projectObject["ProjectOwner"] = newObj.project_owner;
-                projectObject["UserId"] = newObj.UserId;
-
-                var currentProjectId = newObj.ProjectId
-                projectObject["ProjectId"] = currentProjectId;
-                projectObject["ProjectName"] = newObj.Project.dataValues.project_name;
+                console.log("In then of API GET user project");
+                // db.Project_language.findAl({where: {id: }})
 
 
-                // Load all the Languages for the current project
-                var projectLanguages = [];
+                // Below we are capturing all the Projects the User belongs to
+                for (var i = 0; i < dbUserProject.length; i++) {
+
+                    var projectObject = {}
+
+                    var newObj = dbUserProject[i].dataValues;
+                    // console.log(newObj);
+
+                    projectObject["ProjectOwner"] = newObj.project_owner;
+                    projectObject["UserId"] = newObj.UserId;
+
+                    var currentProjectId = newObj.ProjectId
+                    projectObject["ProjectId"] = currentProjectId;
+                    projectObject["ProjectName"] = newObj.Project.dataValues.project_name;
 
 
-                // Within one project we are going to capture all the Languages 
-                // For that project
-                db.Project_language.findAll({ where : {ProjectId: currentProjectId}})
-                .then(function(prjLang){
-
-                   
-                    // console.log(prjLang);
-                    // create a for loop and push projectLanguages
-                    for(var i = 0; i < prjLang.length; i++){
-
-                        var newLang = prjLang[i].dataValues;
-
-                        var lang = newLang.language_name;
-
-                        projectLanguages.push(lang);
-                    }
-                    // End of capturing all the languages
-
-                    console.log("after languages are captured");
-                    console.log(projectLanguages);
-                   
-
-                    projectObject["ProjectLanguages"] = projectLanguages;   
-
-                });
-                // End of Querying all the languages for one project
-
-                console.log("Right after language load");
-                console.log(projectObject);
-
-                result.push(projectObject);
-            }
-            // End of For Loop on dbUserProject
-            
-            console.log(result);
+                    // Load all the Languages for the current project
+                    var projectLanguages = [];
 
 
-            res.json(result);
-            
-        });
+                    // Within one project we are going to capture all the Languages 
+                    // For that project
+                    db.Project_language.findAll({ where: { ProjectId: currentProjectId } })
+                        .then(function (prjLang) {
+
+
+                            // console.log(prjLang);
+                            // create a for loop and push projectLanguages
+                            for (var i = 0; i < prjLang.length; i++) {
+
+                                var newLang = prjLang[i].dataValues;
+
+                                var lang = newLang.language_name;
+
+                                projectLanguages.push(lang);
+                            }
+                            // End of capturing all the languages
+
+                            console.log("after languages are captured");
+                            console.log(projectLanguages);
+
+
+                            projectObject["ProjectLanguages"] = projectLanguages;
+
+                        });
+                    // End of Querying all the languages for one project
+
+                    console.log("Right after language load");
+                    console.log(projectObject);
+
+                    result.push(projectObject);
+                }
+                // End of For Loop on dbUserProject
+
+                console.log(result);
+
+
+                res.json(result);
+
+            });
 
 
     });
     // Not used
 
-//     app.post("/api/joinProject", function (req, res) {
+    app.post("/api/joinProject", function (req, res) {
 
-//         var newObj = req.body
+        var newObj = req.body
 
-//         var useraddedId = req.user.id;
+        var useraddedId = req.user.id;
 
-//         newObj.UserId = useraddedId;
+        newObj.UserId = useraddedId;
 
-   
 
-//         db.User_project.create(newObj).then(function (dbProjId) {
-         
-//         });
-//     });
 
+        db.User_project.create(newObj).then(function (dbProjId) {
+
+        });
+    });
 }
 
