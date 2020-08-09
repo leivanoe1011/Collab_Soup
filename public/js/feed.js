@@ -98,8 +98,7 @@ $(document).ready(function () {
 
 
         var PostRes = {
-            ProjectId: ProjectId,
-            UserId: " "
+            ProjectId: ProjectId
         };
 
         $.post("/api/joinProject", PostRes);
