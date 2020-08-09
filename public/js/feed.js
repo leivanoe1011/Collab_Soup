@@ -21,7 +21,7 @@ $(document).ready(function () {
             let projName = $("<p>");
             let projDesc = $("<p>");
             let projLang = $("<p>");
-            let projPart = $("<p>");
+            var projPart = $("<p>");
             var projJoin = $("<a class='button is-danger projJoinBtn' id='" + projNum + "'>")
 
             projJoin.html("Join")
@@ -45,30 +45,43 @@ $(document).ready(function () {
 
 
 
-            for (var o = 0; o < project[i].User_projects.length; o++) {
-
-                var userIdObj = {
-                    id: project[i].User_projects[o].UserId
-                };
-
-                $.post("/api/users/", userIdObj, function(response){
-                    console.log(response);
-
-                    projPart.append(response + " ");
-                });
-            }
-
-
 
             content.append(projName, projDesc, projLang, projPart, projJoin);
             box.append(content);
             column.append(box);
             feedDiv.append(column);
+
+
+            var userIdArr = [];
+
+            for (var o = 0; o < project[i].User_projects.length; o++) {
+
+                var userIdObj = {
+                    id: userIdArr
+                };
+
+                userIdArr.push(project[i].User_projects[o].UserId)
+            }
+
+            $.post("/api/users/", userIdObj, function (response) {
+                console.log(response);
+
+                for (var t = 0; t < response.length; t++) {
+                    if (t + 1 === response.length) {
+                        projPart.append(response[t]);
+                    } else {
+                        projPart.append(response[t] + ", ");
+                    }
+                }
+
+            });
+
         };
 
         for (var i = 0; i < project.length; i++) {
             createBox();
         };
+
 
         if (sessionStorage.getItem("created") === 'true') {
             window.location.hash = "feednum" + feednum;
@@ -86,8 +99,7 @@ $(document).ready(function () {
 
         var PostRes = {
             ProjectId: ProjectId,
-            UserId: " ",
-            project_owner: 0
+            UserId: " "
         };
 
         $.post("/api/joinProject", PostRes);
