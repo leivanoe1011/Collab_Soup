@@ -1,6 +1,4 @@
-var Promise = require('promise');
 var db = require("../models");
-var asyncHandler = require("express-async-handler")
 
 module.exports = function (app, passport) {
 
