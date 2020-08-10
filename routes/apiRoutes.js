@@ -1,8 +1,6 @@
 var db = require("../models");
 
 module.exports = function (app, passport) {
-
-
     // Validate if user is logged in
     function isLoggedIn(req, res, next) {
 
@@ -12,7 +10,6 @@ module.exports = function (app, passport) {
         res.redirect("/creation");
     }
 
-
     // Get all Users
     app.post("/api/userByEmail", function (req, res) {
 
@@ -21,7 +18,6 @@ module.exports = function (app, passport) {
 
     });
     // End of get by Email
-
 
     // We get the ID from the Session
     // Only a logged in User may update the user
@@ -36,7 +32,6 @@ module.exports = function (app, passport) {
         });
     })
 
-
     app.post("/api/user", function (req, res) {
 
 
@@ -46,7 +41,6 @@ module.exports = function (app, passport) {
             res.json(dbUser);
         })
     });
-
 
     app.post("/api/userLanguage", function (req, res) {
 
@@ -60,7 +54,6 @@ module.exports = function (app, passport) {
         })
 
     });
-
 
     app.post("/api/project", function (req, res) {
 
@@ -119,10 +112,8 @@ module.exports = function (app, passport) {
 
         });
 
-        res.redirect("/feed")
-
+        res.redirect("/feed");
     });
-
 
     app.post("/api/projectLanguage", function (req, res) {
         var newProjLang = req.body;
@@ -131,7 +122,6 @@ module.exports = function (app, passport) {
         });
     });
 
-
     app.post("/api/userProject", function (req, res) {
         var newUserProj = req.body;
 
@@ -139,7 +129,6 @@ module.exports = function (app, passport) {
             res.json(dbUserProject);
         });
     });
-
 
     app.get("/api/userProject/", function (req, res) {
         console.log("In user project get");
@@ -161,7 +150,6 @@ module.exports = function (app, passport) {
             })
     });
 
-
     // get all users by Project
     app.get("/api/projectUser/:id", function (req, res) {
         var projectId = req.params.id;
@@ -170,7 +158,6 @@ module.exports = function (app, passport) {
             res.json(dbProjectUser);
         });
     });
-
 
     app.get("/api/userLanguage/:id", function (req, res) {
 
@@ -181,7 +168,6 @@ module.exports = function (app, passport) {
         });
     });
 
-
     app.get("/api/projLanguage/:id", function (req, res) {
 
         var projectId = req.params.id;
@@ -190,12 +176,7 @@ module.exports = function (app, passport) {
         });
     });
 
-
-
     app.post("/api/users/", function (req, res) {
-
-
-
         var newArr = [];
 
         db.User.findAll({ where: { id: req.body.id } }).then(function (dbUsers) {
@@ -209,10 +190,6 @@ module.exports = function (app, passport) {
         });
     });
 
-
-
-
-
     app.get("/api/projectAll", function (req, res) {
         db.Project.findAll({
             include: [{
@@ -224,8 +201,6 @@ module.exports = function (app, passport) {
             res.json(dbProject);
         });
     });
-
-
     // We get the ID from the Session
     // Only a logged in User may update the user
     app.put("/api/userUpdate/", function (req, res) {
@@ -250,9 +225,6 @@ module.exports = function (app, passport) {
             })
 
     });
-
-
-
     // get all projects by User
     // Not used
     app.get("/api/userProject2/", function (req, res) {

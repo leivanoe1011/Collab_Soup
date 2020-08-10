@@ -15,7 +15,7 @@ $(document).ready(function () {
             feednum++
 
             const feedDiv = $("#feedContent");
-            let column = $("<div class='column is-half'>");
+            let column = $("<div class='column is-half is-full-mobile'>");
             let box = $("<div class='box' id='feednum" + feednum + "'>");
             let content = $("<div class='content'>");
             let projName = $("<p>");

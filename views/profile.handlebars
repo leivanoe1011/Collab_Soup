@@ -1,18 +1,15 @@
 <div class="container">
     <div class="box">
-
         <div class="columns">
-            <div class="column is-2">
+            <div class="column is-2 is-full-mobile">
                 <figure class="image">
-
                     <img src="{{{user.picture}}}">
-
                 </figure>
             </div>
             <div>
                 <div class="column content is-medium">
                     <h1>
-                        {{{ user.firstname }}} {{ user.lastname}}
+                        {{ user.firstname }} {{ user.lastname}}
                     </h1>
                 </div>
             </div>
@@ -46,7 +43,7 @@
             {{#each}}
                 <div class="box is-hidden" id="projects">
                     <div class="columns">
-                        <div class="column is-half is-offset-one-quarter">
+                        <div class="column is-half is-half-mobile is-offset-one-quarter is-offset-one-quarter-mobile">
                             <div class="content">
                                 <p>Project 1 placeholder</p>
                             </div>
@@ -96,15 +93,14 @@
 
                         </div>
 
-
                         <br>
 
-                        <div class="columns is-centered">
+                        <div class="columns is-centered has-text-centered">
                             <div class="field">
                                 <br>
                                 <p id="addMoreLanguages">Do you know any software languages?</p>
                                 <br>
-                                <span id="addSoftwareLanguage" class="icon is-large is-left">
+                                <span id="addSoftwareLanguage" class="icon is-large">
                                     <i class="fas fa-plus-circle"></i>
                                 </span>
                             </div>
