@@ -4,7 +4,6 @@ html, body{
   height: 100%;
   margin: 0px;
   padding: 0px;
-  overflow-x: hidden; 
 }
 
 /* .foot-text{
@@ -42,3 +41,8 @@ html, body{
   font-size: 50px;
 }
 
+@media only screen and (max-width: 1000px) {
+  html, body{
+    overflow-x: hidden;
+  }
+}
