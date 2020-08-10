@@ -50,8 +50,6 @@ exports.profile = function (req, res) {
         res.render("profile", {
 
             user: dbUser[0].dataValues
-            // projects: dbProjects,
-
         });
 
     });
@@ -66,9 +64,8 @@ exports.profileId = function (req, res) {
     db.User.findAll({ where: { id: selectedId } }).then(function (dbUser) {
         // console.log(dbUser);
 
-        res.render("profile", {
-            user: dbUser[0].dataValues,
-            flaggedNotUser: true,
+        res.render("viewingProfile", {
+            user: dbUser[0].dataValues
         });
 
     });
