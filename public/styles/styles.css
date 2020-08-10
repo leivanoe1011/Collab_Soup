@@ -1,5 +1,10 @@
-html{
+html, body{
   background-color: #bfbfbf;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden; 
 }
 
 /* .foot-text{
@@ -25,15 +30,13 @@ html{
 }
 
 #bodyView {
-  
-  min-height: 80vh;
+  min-height: 100vh;
   margin-bottom: 10px;
 }
 
 #notFound{
   margin-top: 50px;
 }
-
 
 .fa-plus-circle {
   font-size: 50px;
