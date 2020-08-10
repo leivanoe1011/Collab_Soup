@@ -150,6 +150,27 @@ module.exports = function (app, passport) {
             })
     });
 
+    app.get("/api/userProject/:id", function (req, res) {
+        console.log("In user project get");
+
+        var profileId = req.params.id;
+
+        console.log(profileId)
+
+        db.User_project.findAll(
+            {
+                where: { UserId: profileId },
+                include: [{
+                    model: db.Project,
+                    include: [{ model: db.Project_language }]
+                }]
+            })
+            .then(function (result) {
+                res.json(result);
+            })
+    });
+
+
     // get all users by Project
     app.get("/api/projectUser/:id", function (req, res) {
         var projectId = req.params.id;
@@ -180,11 +201,15 @@ module.exports = function (app, passport) {
         var newArr = [];
 
         db.User.findAll({ where: { id: req.body.id } }).then(function (dbUsers) {
-
             for (var i = 0; i < dbUsers.length; i++) {
-                newArr.push(dbUsers[i].dataValues.firstname)
-            };
 
+                var dbUsersIdAndName = {
+                    name: dbUsers[i].dataValues.firstname,
+                    id: dbUsers[i].dataValues.id
+                }
+
+                newArr.push(dbUsersIdAndName)
+            };
         }).then(function () {
             res.json(newArr);
         });
