@@ -62,8 +62,6 @@ function getUserProjects() {
 
 }
 
-
-
 function initialProfileConfig() {
     $("#projInfo").addClass("is-hidden");
 }

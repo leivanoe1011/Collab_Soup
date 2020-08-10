@@ -68,9 +68,9 @@ $(document).ready(function () {
 
                 for (var t = 0; t < response.length; t++) {
                     if (t + 1 === response.length) {
-                        projPart.append(response[t]);
+                        projPart.append("<a href='/profile/" + response[t].id + "'>" + response[t].name + "</a>");
                     } else {
-                        projPart.append(response[t] + ", ");
+                        projPart.append("<a href='/profile/" + response[t].id + "'>" + response[t].name + ", </a>");
                     }
                 }
 

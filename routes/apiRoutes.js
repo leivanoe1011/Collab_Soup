@@ -201,11 +201,15 @@ module.exports = function (app, passport) {
         var newArr = [];
 
         db.User.findAll({ where: { id: req.body.id } }).then(function (dbUsers) {
-
             for (var i = 0; i < dbUsers.length; i++) {
-                newArr.push(dbUsers[i].dataValues.firstname)
-            };
 
+                var dbUsersIdAndName = {
+                    name: dbUsers[i].dataValues.firstname,
+                    id: dbUsers[i].dataValues.id
+                }
+
+                newArr.push(dbUsersIdAndName)
+            };
         }).then(function () {
             res.json(newArr);
         });
