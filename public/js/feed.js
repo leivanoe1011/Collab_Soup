@@ -1,8 +1,6 @@
 $(document).ready(function () {
     // FEED PAGE
-
     var feednum = 1;
-
 
     $.get("/api/projectAll", function (response) {
         project = response;
@@ -24,7 +22,7 @@ $(document).ready(function () {
             var projPart = $("<p>");
             var projJoin = $("<a class='button is-danger projJoinBtn' id='" + projNum + "'>");
 
-            projJoin.html("Join")
+            projJoin.html("Join");
 
             projName.html('Project Name: ' + project[i].project_name);
             projDesc.html('Project description: ' + project[i].project_description);
@@ -35,7 +33,6 @@ $(document).ready(function () {
             for (var j = 0; j < project[i].Project_languages.length; j++) {
                 projLangLength = project[i].Project_languages.length;
 
-
                 if (j + 1 === projLangLength) {
                     projLang.append(project[i].Project_languages[j].language_name);
                 } else {
@@ -43,19 +40,14 @@ $(document).ready(function () {
                 };
             };
 
-
-
-
             content.append(projName, projDesc, projLang, projPart, projJoin);
             box.append(content);
             column.append(box);
             feedDiv.append(column);
 
-
             var userIdArr = [];
 
             for (var o = 0; o < project[i].User_projects.length; o++) {
-
                 var userIdObj = {
                     id: userIdArr
                 };
@@ -64,8 +56,6 @@ $(document).ready(function () {
             };
 
             $.post("/api/users/", userIdObj, function (response) {
-                console.log(response);
-
                 for (var t = 0; t < response.length; t++) {
                     if (t + 1 === response.length) {
                         projPart.append("<a href='/profile/" + response[t].id + "'>" + response[t].name + "</a>");
@@ -73,7 +63,6 @@ $(document).ready(function () {
                         projPart.append("<a href='/profile/" + response[t].id + "'>" + response[t].name + ", </a>");
                     };
                 };
-
             });
 
         };
@@ -82,18 +71,14 @@ $(document).ready(function () {
             createBox();
         };
 
-
         if (sessionStorage.getItem("created") === 'true') {
             window.location.hash = "feednum" + feednum;
             sessionStorage.removeItem("created");
         };
     });
 
-
     $(document).on("click", ".projJoinBtn", function () {
         var ProjectId = $(this).attr("id");
-
-        console.log(ProjectId);
 
         var PostRes = {
             ProjectId: ProjectId
