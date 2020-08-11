@@ -1,5 +1,3 @@
-
-
 var express = require("express");
 
 var exphbs = require("express-handlebars");
@@ -17,7 +15,6 @@ var passport = require("passport");
 // and it uses this to manage retrieving the user details when needed
 var session = require("express-session");
 
-
 var flash = require("connect-flash");
 
 // This extracts the entire body part of an incoming 
@@ -31,9 +28,7 @@ var bodyParser = require('body-parser');
 var env = require('dotenv').config();
 // var env = require("dotenv").load();
 
-
 var app = express();
-
 
 var PORT = process.env.PORT || 3000;
 
@@ -42,15 +37,12 @@ var PORT = process.env.PORT || 3000;
 // to access form inputs
 app.use(express.urlencoded({ extended: true }));
 
-
 // Middleware below allows the app to parse JSON
 app.use(express.json());
-
 
 // The Middleware below will begin reading the files from the 
 // Public Directory
 app.use(express.static("public"));
-
 
 // Handlebars
 app.engine(
@@ -71,7 +63,6 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions\
 
 app.use(flash());
-
 
 // Routes
 // Need to pass passport to access session Ids
