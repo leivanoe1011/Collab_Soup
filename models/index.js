@@ -1,5 +1,3 @@
-
-
 "use strict";
 
 var fs = require("fs");
@@ -19,7 +17,7 @@ if (config.use_env_variable) {
     config.password,
     config
   );
-}
+};
 
 fs.readdirSync(__dirname)
   .filter(function(file) {
@@ -35,7 +33,7 @@ fs.readdirSync(__dirname)
 Object.keys(db).forEach(function(modelName) {
   if (db[modelName].associate) {
     db[modelName].associate(db);
-  }
+  };
 });
 
 db.sequelize = sequelize;

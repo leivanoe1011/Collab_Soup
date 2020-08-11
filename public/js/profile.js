@@ -1,13 +1,11 @@
-
 var propertyNames = ["email", "linkedin", "github", "about"];
-
 
 function random_id() {
     var id_num = Math.random().toString(9).substr(2, 3);
     var id_str = Math.random().toString(36).substr(2);
 
     return id_num + id_str;
-}
+};
 
 
 function createTable(userObj) {
@@ -19,15 +17,13 @@ function createTable(userObj) {
     tbl += '<tr>';
     tbl += '<th> </th>';
     tbl += '<th>Developer Info</th>';
-    tbl += '<th>Options</th>' // Here we load the edit
+    tbl += '<th>Options</th>'; // Here we load the edit
     tbl += '</tr>';
     tbl += '</thead>';
 
     // Create body
     tbl += '<tbody>';
     // var propertyNames = Object.getOwnPropertyNames(userObj);
-
-
 
     for (var i = 0; i < propertyNames.length; i++) {
         var row_id = random_id();
@@ -61,19 +57,16 @@ function createTable(userObj) {
     tbl += '</table>'
     //--->create data table > end
 
-
     //out put table data
     $(document).find('.tbl_user_data').html(tbl);
 
     $(document).find('.btn_save').hide();
     $(document).find('.btn_cancel').hide();
-}
+};
 
 
 function loadUserProjects(result) {
-
     var userProjects = result;
-
 
     for (var i = 0; i < userProjects.length; i++) {
 
@@ -113,15 +106,12 @@ function loadUserProjects(result) {
         $(box).append(content);
         $(column).append(box);
 
-
         $(document).find(".user_proj_data").append(column);
-    }
-
-}
+    };
+};
 
 
 function getUserProjects() {
-
     $.ajax({
         url: "/api/userProject/",
         type: "GET",
@@ -131,10 +121,8 @@ function getUserProjects() {
 
             loadUserProjects(userObj);
         }
-    })
-
-}
-
+    });
+};
 
 function getUserInfo() {
     $.ajax({
@@ -145,17 +133,14 @@ function getUserInfo() {
 
             createTable(userObj);
         }
-    })
-}
-
+    });
+};
 
 function initialProfileConfig() {
     $("#projInfo").addClass("is-hidden");
-}
-
+};
 
 $(document).ready(function () {
-
     sessionStorage.setItem('loggedin', true);
 
     initialProfileConfig();
@@ -182,7 +167,6 @@ $(document).ready(function () {
         $("#projInfo").addClass("is-hidden");
     });
 
-
     $("#projectCreate").click(function () {
         $("#projectSec").removeClass("is-active");
         $("#projectCreateForm").removeClass("is-hidden");
@@ -193,12 +177,8 @@ $(document).ready(function () {
         $("#projInfo").addClass("is-hidden");
     });
 
-
     getUserInfo();
-
-
     getUserProjects();
-
 
     //--->make div editable > start
     $(document).on('click', '.row_data', function (event) {
@@ -206,7 +186,7 @@ $(document).ready(function () {
 
         if ($(this).attr('edit_type') == 'button') {
             return false;
-        }
+        };
 
         //make div editable
         $(this).closest('div').attr('contenteditable', 'true');
@@ -214,9 +194,8 @@ $(document).ready(function () {
         $(this).addClass('bg-warning').css('padding', '5px');
 
         $(this).focus();
-    })
+    });
     //--->make div editable > end
-
 
     //--->save single field data > start
     $(document).on('focusout', '.row_data', function (event) {
@@ -224,13 +203,13 @@ $(document).ready(function () {
 
         if ($(this).attr('edit_type') == 'button') {
             return false;
-        }
+        };
 
         var row_id = $(this).closest('tr').attr('row_id');
 
         var row_div = $(this)
             .removeClass('bg-warning') //add bg css
-            .css('padding', '')
+            .css('padding', '');
 
         var col_name = row_div.attr('col_name');
         var col_val = row_div.html();
@@ -244,9 +223,8 @@ $(document).ready(function () {
         //out put to show
         $('.post_msg').html('<pre class="bg-success">' + JSON.stringify(arr, null, 2) + '</pre>');
 
-    })
+    });
     //--->save single field data > end
-
 
     //--->button > edit > start	
     $(document).on('click', '.btn_edit', function (event) {
@@ -266,7 +244,7 @@ $(document).ready(function () {
             .attr('contenteditable', 'true')
             .attr('edit_type', 'button')
             .addClass('bg-warning')
-            .css('padding', '3px')
+            .css('padding', '3px');
 
         //--->add the original entry > start
         tbl_row.find('.row_data').each(function (index, val) {
@@ -277,7 +255,6 @@ $(document).ready(function () {
 
     });
     //--->button > edit > end
-
 
     //--->button > cancel > start	
     $(document).on('click', '.btn_cancel', function (event) {
@@ -298,7 +275,7 @@ $(document).ready(function () {
         tbl_row.find('.row_data')
             .attr('edit_type', 'click')
             .removeClass('bg-warning')
-            .css('padding', '')
+            .css('padding', '');
 
         tbl_row.find('.row_data').each(function (index, val) {
             $(this).html($(this).attr('original_entry'));
@@ -306,14 +283,13 @@ $(document).ready(function () {
     });
     //--->button > cancel > end
 
-
     //--->save whole row entery > start	
     $(document).on('click', '.btn_save', function (event) {
         event.preventDefault();
+
         var tbl_row = $(this).closest('tr');
 
         var row_id = tbl_row.attr('row_id');
-
 
         //hide save and cacel buttons
         tbl_row.find('.btn_save').hide();
@@ -322,12 +298,11 @@ $(document).ready(function () {
         //show edit button
         tbl_row.find('.btn_edit').show();
 
-
         //make the whole row editable
         tbl_row.find('.row_data')
             .attr('edit_type', 'click')
             .removeClass('bg-warning')
-            .css('padding', '')
+            .css('padding', '');
 
         //--->get row data > start
         var arr = {};
@@ -342,7 +317,6 @@ $(document).ready(function () {
         // Below adding row_id to the object
         // $.extend(arr, {row_id:row_id});
 
-
         $.ajax({
             url: "/api/userUpdate/",
             type: "PUT",
@@ -350,18 +324,13 @@ $(document).ready(function () {
             success: function (result) {
                 // After update reload the page
                 location.reload();
-
             }
-
         });
 
         //out put to show
-        $('.post_msg').html('<pre class="bg-success">' + JSON.stringify(arr, null, 2) + '</pre>')
-
-
+        $('.post_msg').html('<pre class="bg-success">' + JSON.stringify(arr, null, 2) + '</pre>');
     });
     //--->save whole row entery > end
-
 
     var languageInputCnt = 0;
 
@@ -402,17 +371,13 @@ $(document).ready(function () {
 
         $(inputField).attr("placeholder", "Language");
 
-
         $(span).append(icon);
-
 
         $(iconField).append(inputField);
 
-        $(iconField).append(span)
-
+        $(iconField).append(span);
 
         $(field).append(iconField);
-
 
         $(column).append(field);
 
@@ -423,10 +388,9 @@ $(document).ready(function () {
         $("#softwareLanguage").append(column);
     });
 
-
     $("#projCreateBtn").on("click", function () {
         sessionStorage.setItem("created", true);
     });
-})
+});
 
 

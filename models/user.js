@@ -1,5 +1,4 @@
 module.exports = function(sequelize, DataTypes){
-
     var User = sequelize.define("User", {
         id: {
             autoIncrement: true,
@@ -61,10 +60,7 @@ module.exports = function(sequelize, DataTypes){
             type: DataTypes.STRING(4000),
             allowNull: true
         }
-
-
     });
-
 
     User.associate = function(models){
         // User has many Languages
