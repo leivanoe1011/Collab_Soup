@@ -53,8 +53,7 @@ module.exports = function (app, passport) {
 
   // Load index page
   app.get("/", function (req, res) {
-    res.render("index");
-  });
+    res.render("index");});
 
   app.get("/creation", authController.creation);
 
