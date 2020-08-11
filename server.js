@@ -79,7 +79,6 @@ require("./routes/htmlRoutes")(app, passport);
 
 require("./routes/apiRoutes")(app, passport);
 
-
 //load passport strategies
 // models.user ... user will mirror the lowercase "user" defined in the user model
 require('./config/passport/passport.js')(passport, models.User, models.User_language);
@@ -87,11 +86,7 @@ require('./config/passport/passport.js')(passport, models.User, models.User_lang
 // Starting the server, syncing our models ------------------------------------/
 models.sequelize.sync().then(function () {
   app.listen(PORT, function () {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
+    console.log("listening on port: " + PORT);
   });
 });
 
