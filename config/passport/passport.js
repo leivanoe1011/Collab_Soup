@@ -1,10 +1,6 @@
-
-
 // this file will contain our passport strategies
 // used to secure password
 var bCrypt = require("bcrypt-nodejs");
-
-
 
 module.exports = function(passport, user, userLanguage){
 
@@ -33,7 +29,7 @@ module.exports = function(passport, user, userLanguage){
             // hashed password generating function
             var generateHash = function(password){
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
-            }
+            };
 
             // we check to see if the user already exists, and if not we add them
             User.findOne({
@@ -58,7 +54,6 @@ module.exports = function(passport, user, userLanguage){
 
                     };
 
-
                     var languageProperties = [];
                     var propertyNames = Object.getOwnPropertyNames(req.body);
 
@@ -69,56 +64,53 @@ module.exports = function(passport, user, userLanguage){
 
                         if(propertyName.includes("language")){
                             languageProperties.push(propertyName);
-                        }
-                    }
+                        };
+                    };
 
                     // if the user does not exist, than we create it
                     User.create(data).then(function(newUser, created){
                         if(!newUser){
                             return done(null, false);
-                        }
+                        };
 
                         var userId = newUser.id;
 
                         if(languageProperties.length > 0){
-
                             for(var i = 0; i < languageProperties.length; i++){
                                 var lang = languageProperties[i];
                                
                                 var userLang = {
                                     UserId: userId,
                                     language_name: req.body[lang]
-                                }
+                                };
 
                                 User_language.create(userLang).then(function(userLanguage, created){
                                     if(!userLanguage){
                                         return done(null, false);
-                                    }
+                                    };
                                 });
                                 // languageProperties[lang] = req.body[lang];
-                            }
+                            };
 
-                        }
+                        };
                       
                         // If the user is created successfully
                         if(newUser){
                             return done(null, newUser); // This needs to be captured by the calling function
-                        }
-                    })
-                }
-            })
+                        };
+                    });
+                };
+            });
         }
-
     ));
     // end of Passport.User
-
 
    // serialize
     // In this function, we will be saving the user id to the session
     passport.serializeUser(function(user, done) {
-    
+
         done(null, user.id);
-    
+        
     });
 
     // deserialize user 
@@ -130,7 +122,7 @@ module.exports = function(passport, user, userLanguage){
         User.findByPk(id).then(function(user) {
     
             if (user) {
-    
+
                 done(null, user.get());
     
             } else {
