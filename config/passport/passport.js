@@ -110,7 +110,7 @@ module.exports = function(passport, user, userLanguage){
     passport.serializeUser(function(user, done) {
 
         done(null, user.id);
-        
+
     });
 
     // deserialize user 
@@ -129,7 +129,7 @@ module.exports = function(passport, user, userLanguage){
     
                 done(user.errors, null);
     
-            }
+            };
     
         });
     

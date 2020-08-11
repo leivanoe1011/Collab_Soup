@@ -1,4 +1,3 @@
-
 var db = require("../models");
 
 // Flash was passed to App in the server js under app.use();
