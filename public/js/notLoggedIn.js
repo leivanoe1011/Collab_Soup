@@ -1,7 +1,5 @@
 function loadUserProjects(result) {
-
     var userProjects = result;
-
 
     for (var i = 0; i < userProjects.length; i++) {
 
@@ -21,8 +19,6 @@ function loadUserProjects(result) {
         projDesc.html('Project description: ' + projectDesc);
         projLang.html('Project language(s): ');
 
-        console.log(currentPrj);
-
         var langList = $("<ul>");
 
         var projectLanguages = currentPrj.Project.Project_languages;
@@ -33,7 +29,7 @@ function loadUserProjects(result) {
             var listItem = $("<li>");
             $(listItem).text(lang);
             $(langList).append(listItem);
-        }
+        };
 
         $(projLang).append(langList);
 
@@ -43,12 +39,10 @@ function loadUserProjects(result) {
 
 
         $(document).find(".user_proj_data").append(column);
-    }
-
-}
+    };
+};
 
 function getUserProjects() {
-
     $.ajax({
         url: "/api/userProject/" + window.location.href.charAt(window.location.href.length - 1),
         type: "GET",
@@ -58,14 +52,12 @@ function getUserProjects() {
 
             loadUserProjects(userObj);
         }
-    })
-
-}
+    });
+};
 
 function initialProfileConfig() {
     $("#projInfo").addClass("is-hidden");
-}
-
+};
 
 $(document).ready(function () {
 
@@ -91,10 +83,7 @@ $(document).ready(function () {
         $("#projInfo").addClass("is-hidden");
     });
 
-
-
-
     getUserProjects();
-})
+});
 
 
