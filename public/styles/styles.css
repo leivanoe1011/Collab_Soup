@@ -4,15 +4,11 @@ html, body{
   height: 100%;
   margin: 0px;
   padding: 0px;
-};
-
-/* .foot-text{
-  color: #e64100;
-} */
+}
 
 .parallax {
   /* The image used */
-  background-image: url('/images/newPara.jpg');
+  background-image: url('../../images/newPara.jpg');
   /* Full height */
   height: 100vh; 
   /* Create the parallax scrolling effect */
@@ -21,42 +17,42 @@ html, body{
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-};
+}
 
 #landingCon{
   position: absolute;
   top: 25%;
   left: 25%;
-};
+}
 
 #createCon {
   margin-top: 10px;
   margin-bottom: 20px;
-};
+}
 
 #bodyView {
   min-height: 100vh;
 
-};
+}
 
 #notFound{
   margin-top: 50px;
-};
+}
 
 .fa-plus-circle {
   font-size: 50px;
-};
+}
 
 @media only screen and (max-width: 1000px) {
   html, body{
     overflow-x: hidden;
     position: absolute;
-  };
+  }
 
   #landingCon{
     position: absolute;
     top: 100px;
     left: 0;
-  };
+  }
 
-};
+}
