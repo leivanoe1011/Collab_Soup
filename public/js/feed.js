@@ -22,14 +22,14 @@ $(document).ready(function () {
             let projDesc = $("<p>");
             let projLang = $("<p>");
             var projPart = $("<p>");
-            var projJoin = $("<a class='button is-danger projJoinBtn' id='" + projNum + "'>")
+            var projJoin = $("<a class='button is-danger projJoinBtn' id='" + projNum + "'>");
 
             projJoin.html("Join")
 
             projName.html('Project Name: ' + project[i].project_name);
             projDesc.html('Project description: ' + project[i].project_description);
             projLang.html('Project language(s): ');
-            projPart.html('Project participant(s): ')
+            projPart.html('Project participant(s): ');
 
 
             for (var j = 0; j < project[i].Project_languages.length; j++) {
@@ -40,7 +40,7 @@ $(document).ready(function () {
                     projLang.append(project[i].Project_languages[j].language_name);
                 } else {
                     projLang.append(project[i].Project_languages[j].language_name + ", ");
-                }
+                };
             };
 
 
@@ -60,8 +60,8 @@ $(document).ready(function () {
                     id: userIdArr
                 };
 
-                userIdArr.push(project[i].User_projects[o].UserId)
-            }
+                userIdArr.push(project[i].User_projects[o].UserId);
+            };
 
             $.post("/api/users/", userIdObj, function (response) {
                 console.log(response);
@@ -71,8 +71,8 @@ $(document).ready(function () {
                         projPart.append("<a href='/profile/" + response[t].id + "'>" + response[t].name + "</a>");
                     } else {
                         projPart.append("<a href='/profile/" + response[t].id + "'>" + response[t].name + ", </a>");
-                    }
-                }
+                    };
+                };
 
             });
 
@@ -94,8 +94,6 @@ $(document).ready(function () {
         var ProjectId = $(this).attr("id");
 
         console.log(ProjectId);
-
-
 
         var PostRes = {
             ProjectId: ProjectId
