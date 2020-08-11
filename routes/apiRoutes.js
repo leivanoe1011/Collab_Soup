@@ -33,8 +33,6 @@ module.exports = function (app, passport) {
     })
 
     app.post("/api/user", function (req, res) {
-
-
         var newUser = req.body;
 
         db.User.create(newUser).then(function (dbUser) {
@@ -305,7 +303,6 @@ module.exports = function (app, passport) {
                     db.Project_language.findAll({ where: { ProjectId: currentProjectId } })
                         .then(function (prjLang) {
 
-
                             // console.log(prjLang);
                             // create a for loop and push projectLanguages
                             for (var i = 0; i < prjLang.length; i++) {
@@ -352,12 +349,9 @@ module.exports = function (app, passport) {
         var useraddedId = req.user.id;
 
         newObj.UserId = useraddedId;
-
-
-
+        
         db.User_project.create(newObj).then(function (dbProjId) {
 
         });
     });
 }
-

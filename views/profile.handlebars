@@ -1,8 +1,9 @@
 <br>
 <div class="container">
+    
     <div class="box">
         <div class="columns">
-            <div class="column is-2 is-full-mobile">
+            <div class="column is-2 is-offset-1-mobile is-three-quarters-mobile">
                 <figure class="image">
                     <img src="{{{user.picture}}}">
                 </figure>
@@ -40,20 +41,7 @@
                 </ul>
             </div>
         </div>
-        {{#if projects}}
-            {{#each}}
-                <div class="box is-hidden" id="projects">
-                    <div class="columns">
-                        <div class="column is-half is-half-mobile is-offset-one-quarter is-offset-one-quarter-mobile">
-                            <div class="content">
-                                <p>Project 1 placeholder</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {{/each}}
-        {{/if}}
-
+    
         <div class="box" id="info">
             <div class="columns">
 
@@ -74,9 +62,6 @@
                 </div>
             </div>
         </div>
-
-
-        
 
         <div class="box is-hidden" id="projectCreateForm">
             <div class="columns">

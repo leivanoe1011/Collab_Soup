@@ -14,14 +14,20 @@ html, body{
   /* The image used */
   background-image: url('../../images/parallax.jpg');
   /* Full height */
-  height: 75vh; 
+  height: 100vh; 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
+#landingCon{
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}
 
 #createCon {
   margin-top: 10px;
@@ -44,5 +50,13 @@ html, body{
 @media only screen and (max-width: 1000px) {
   html, body{
     overflow-x: hidden;
+    position: absolute;
   }
+
+  #landingCon{
+    position: absolute;
+    top: 100px;
+    left: 0;
+  }
+
 }
