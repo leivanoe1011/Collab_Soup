@@ -41,14 +41,11 @@ $(document).ready(function () {
 
         $(span).append(icon);
 
-
         $(iconField).append(inputField);
 
-        $(iconField).append(span)
-
+        $(iconField).append(span);
 
         $(field).append(iconField);
-
 
         $(column).append(field);
 
