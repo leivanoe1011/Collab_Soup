@@ -1,122 +1,124 @@
 <br>
 <div class="container">
-    
-    <div class="box">
-        <div class="columns">
-            <div class="column is-2 is-offset-1-mobile is-three-quarters-mobile">
-                <figure class="image">
-                    <img src="{{{user.picture}}}">
-                </figure>
-            </div>
-            <div>
-                <div class="column content is-medium">
-                    <h1>
-                        {{ user.firstname }} {{ user.lastname}}
-                    </h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="columns">
-            <div class="tabs is-centered is-boxed">
-                <ul>
-                    <li class="is-active" id="aboutSec">
-                        <a>
-                            <span class="icon is-small"><i class="fas fa-user" aria-hidden="true"></i></span>
-                            <span>About</span>
-                        </a>
-                    </li>
-                    <li class="" id="projectSec">
-                        <a>
-                            <span class="icon is-small"><i class="fas fa-ruler" aria-hidden="true"></i></span>
-                            <span>Projects</span>
-                        </a>
-                    </li>
-                    <li class="" id="projectCreate">
-                        <a>
-                            <span class="icon is-small"><i class="fas fa-ruler" aria-hidden="true"></i></span>
-                            <span>Create Project</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-        <div class="box" id="info">
-            <div class="columns">
-
-                <div class="column tbl_user_data">
-                    
-
-                </div>
-            </div>
-        </div>
-
-
-        <div id="projInfo">
-            <div class="columns">
-
-                <div class="column user_proj_data">
-                    
-
-                </div>
-            </div>
-        </div>
-
-        <div class="box is-hidden" id="projectCreateForm">
-            <div class="columns">
-                <div class="column">
-                    <form name="project" method="post" action="/api/project">
-                        <div class="field">
-                            <label class="label">Project Name</label>
-                            <div class="control">
-                                <input class="input" name="projectName" type="text" placeholder="name here">
-                            </div>
+    <div class="columns">
+        <div class="column is-full-mobile">
+            <div class="box">
+                <div class="columns">
+                    <div class="column is-2-desktop is-half-mobile is-offset-one-quarter-mobile">
+                        <figure class="image">
+                            <img src="{{{user.picture}}}">
+                        </figure>
+                    </div>
+                    <div>
+                        <div class="column content is-medium">
+                            <h1>
+                                {{ user.firstname }} {{ user.lastname}}
+                            </h1>
                         </div>
+                    </div>
+                </div>
 
-                        {{!-- Languages will be added --}}
-                        <div id="softwareLanguage">
+                <div class="columns">
+                    <div class="tabs is-centered is-boxed">
+                        <ul>
+                            <li class="is-active" id="aboutSec">
+                                <a>
+                                    <span class="icon is-small"><i class="fas fa-user" aria-hidden="true"></i></span>
+                                    <span>About</span>
+                                </a>
+                            </li>
+                            <li class="" id="projectSec">
+                                <a>
+                                    <span class="icon is-small"><i class="fas fa-ruler" aria-hidden="true"></i></span>
+                                    <span>Projects</span>
+                                </a>
+                            </li>
+                            <li class="" id="projectCreate">
+                                <a>
+                                    <span class="icon is-small"><i class="fas fa-ruler" aria-hidden="true"></i></span>
+                                    <span>Create Project</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box" id="info">
+                    <div class="columns">
+
+                        <div class="column tbl_user_data">
+
 
                         </div>
+                    </div>
+                </div>
 
-                        <br>
 
-                        <div class="columns is-centered has-text-centered">
-                            <div class="field">
+                <div id="projInfo">
+                    <div class="columns">
+
+                        <div class="column user_proj_data">
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box is-hidden" id="projectCreateForm">
+                    <div class="columns">
+                        <div class="column">
+                            <form name="project" method="post" action="/api/project">
+                                <div class="field">
+                                    <label class="label">Project Name</label>
+                                    <div class="control">
+                                        <input class="input" name="projectName" type="text" placeholder="name here">
+                                    </div>
+                                </div>
+
+                                {{!-- Languages will be added --}}
+                                <div id="softwareLanguage">
+
+                                </div>
+
                                 <br>
-                                <p id="addMoreLanguages">Do you know any software languages?</p>
-                                <br>
-                                <span id="addSoftwareLanguage" class="icon is-large">
-                                    <i class="fas fa-plus-circle"></i>
-                                </span>
-                            </div>
-                        </div>
 
-                        <div class="field">
-                            <label class="label">Project Description</label>
-                            <div class="control">
-                                <textarea class="textarea" name="projDesc" placeholder="description here"></textarea>
-                            </div>
-                        </div>
+                                <div class="columns is-centered has-text-centered">
+                                    <div class="field">
+                                        <br>
+                                        <p id="addMoreLanguages">Do you know any software languages?</p>
+                                        <br>
+                                        <span id="addSoftwareLanguage" class="icon is-large">
+                                            <i class="fas fa-plus-circle"></i>
+                                        </span>
+                                    </div>
+                                </div>
 
-                        <div class="field is-grouped">
-                            <div class="control">
-                                <button class="button is-danger" type="submit" value="proj"
-                                    id="projCreateBtn">Submit</button>
-                            </div>
+                                <div class="field">
+                                    <label class="label">Project Description</label>
+                                    <div class="control">
+                                        <textarea class="textarea" name="projDesc"
+                                            placeholder="description here"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="field is-grouped">
+                                    <div class="control">
+                                        <button class="button is-danger" type="submit" value="proj"
+                                            id="projCreateBtn">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
+
             </div>
         </div>
-        
     </div>
 </div>
-
 
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script defer src="/js/all.js"></script>
 <script src="/js/profile.js"></script>
 <script src="/js/index.js"></script>
-
