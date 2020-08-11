@@ -8,7 +8,7 @@ module.exports = function (app, passport) {
 
         // If not authenticated, then redirect to the signin page
         res.redirect("/creation");
-    }
+    };
 
     // Get all Users
     app.post("/api/userByEmail", function (req, res) {
@@ -37,7 +37,7 @@ module.exports = function (app, passport) {
 
         db.User.create(newUser).then(function (dbUser) {
             res.json(dbUser);
-        })
+        });
     });
 
     app.post("/api/userLanguage", function (req, res) {
@@ -49,19 +49,19 @@ module.exports = function (app, passport) {
 
         db.User_language.create(newLanguage).then(function (dbLang) {
             res.json(dbLang);
-        })
+        });
 
     });
 
     app.post("/api/project", function (req, res) {
 
-        var loggedUserId = req.user.id
+        var loggedUserId = req.user.id;
 
 
         var newProject = {
             project_name: req.body.projectName,
             project_description: req.body.projDesc
-        }
+        };
 
         db.Project.create(newProject).then(function (dbProject) {
 
@@ -71,13 +71,12 @@ module.exports = function (app, passport) {
                 UserId: loggedUserId,
                 ProjectId: projId,
                 project_owner: 1 // Created the project
-            }
+            };
 
-            db.User_project.create(userProj).then(function (dbUserProj) { });
+            db.User_project.create(userProj);
 
             var languageProperties = [];
             var propertyNames = Object.getOwnPropertyNames(req.body);
-
 
             for (var i = 0; i < propertyNames.length; i++) {
 
@@ -96,21 +95,22 @@ module.exports = function (app, passport) {
                     var userLang = {
                         ProjectId: projId,
                         language_name: req.body[lang]
-                    }
+                    };
 
                     db.Project_language.create(userLang).then(function (userLanguage, created) {
                         if (!userLanguage) {
                             return done(null, false);
-                        }
+                        };
                     });
 
-                }
+                };
 
-            }
+            };
 
         });
 
         res.redirect("/feed");
+
     });
 
     app.post("/api/projectLanguage", function (req, res) {
@@ -129,11 +129,8 @@ module.exports = function (app, passport) {
     });
 
     app.get("/api/userProject/", function (req, res) {
-        console.log("In user project get");
 
         var sessionUserId = req.user.id;
-
-        console.log(sessionUserId)
 
         db.User_project.findAll(
             {
@@ -145,15 +142,11 @@ module.exports = function (app, passport) {
             })
             .then(function (result) {
                 res.json(result);
-            })
+            });
     });
 
     app.get("/api/userProject/:id", function (req, res) {
-        console.log("In user project get");
-
         var profileId = req.params.id;
-
-        console.log(profileId)
 
         db.User_project.findAll(
             {
@@ -165,7 +158,7 @@ module.exports = function (app, passport) {
             })
             .then(function (result) {
                 res.json(result);
-            })
+            });
     });
 
 
@@ -179,7 +172,6 @@ module.exports = function (app, passport) {
     });
 
     app.get("/api/userLanguage/:id", function (req, res) {
-
         var userId = req.params.id;
 
         db.User_language.findAll({ where: { user_id: userId } }).then(function (userLang) {
@@ -188,8 +180,8 @@ module.exports = function (app, passport) {
     });
 
     app.get("/api/projLanguage/:id", function (req, res) {
-
         var projectId = req.params.id;
+
         db.Project_language.findAll({ where: { project_id: projectId } }).then(function (projLang) {
             res.json(projLang);
         });
@@ -204,9 +196,9 @@ module.exports = function (app, passport) {
                 var dbUsersIdAndName = {
                     name: dbUsers[i].dataValues.firstname,
                     id: dbUsers[i].dataValues.id
-                }
+                };
 
-                newArr.push(dbUsersIdAndName)
+                newArr.push(dbUsersIdAndName);
             };
         }).then(function () {
             res.json(newArr);
@@ -224,6 +216,7 @@ module.exports = function (app, passport) {
             res.json(dbProject);
         });
     });
+
     // We get the ID from the Session
     // Only a logged in User may update the user
     app.put("/api/userUpdate/", function (req, res) {
@@ -231,12 +224,13 @@ module.exports = function (app, passport) {
         // console.log(req);
         var userId = req.user.id;
         var reqObj = req.body;
-        var propertyNames = Object.getOwnPropertyNames(reqObj)
+        var propertyNames = Object.getOwnPropertyNames(reqObj);
         var columnToUpdate = propertyNames[0];
         var valueOfCol = reqObj[columnToUpdate];
 
         var updateStatement = {};
-        updateStatement[columnToUpdate] = valueOfCol
+
+        updateStatement[columnToUpdate] = valueOfCol;
 
 
         db.User.update(
@@ -245,19 +239,14 @@ module.exports = function (app, passport) {
         )
             .then(function (dbUser) {
                 res.json(dbUser);
-            })
+            });
 
     });
+
     // get all projects by User
     // Not used
     app.get("/api/userProject2/", function (req, res) {
-
-        console.log("In user project get");
-
         var sessionUserId = req.user.id;
-
-        console.log(sessionUserId)
-
 
         db.User_project.findAll({
             where: { UserId: sessionUserId },
@@ -271,17 +260,15 @@ module.exports = function (app, passport) {
                 // Load all the projects for a user
                 var result = [];
 
-
                 //var projectObjects = {}
 
-                console.log("In then of API GET user project");
                 // db.Project_language.findAl({where: {id: }})
 
 
                 // Below we are capturing all the Projects the User belongs to
                 for (var i = 0; i < dbUserProject.length; i++) {
 
-                    var projectObject = {}
+                    var projectObject = {};
 
                     var newObj = dbUserProject[i].dataValues;
                     // console.log(newObj);
@@ -289,14 +276,12 @@ module.exports = function (app, passport) {
                     projectObject["ProjectOwner"] = newObj.project_owner;
                     projectObject["UserId"] = newObj.UserId;
 
-                    var currentProjectId = newObj.ProjectId
+                    var currentProjectId = newObj.ProjectId;
                     projectObject["ProjectId"] = currentProjectId;
                     projectObject["ProjectName"] = newObj.Project.dataValues.project_name;
 
-
                     // Load all the Languages for the current project
                     var projectLanguages = [];
-
 
                     // Within one project we are going to capture all the Languages 
                     // For that project
@@ -312,46 +297,33 @@ module.exports = function (app, passport) {
                                 var lang = newLang.language_name;
 
                                 projectLanguages.push(lang);
-                            }
+                            };
                             // End of capturing all the languages
-
-                            console.log("after languages are captured");
-                            console.log(projectLanguages);
-
 
                             projectObject["ProjectLanguages"] = projectLanguages;
 
                         });
                     // End of Querying all the languages for one project
 
-                    console.log("Right after language load");
-                    console.log(projectObject);
-
                     result.push(projectObject);
-                }
+                };
+
                 // End of For Loop on dbUserProject
-
-                console.log(result);
-
-
                 res.json(result);
 
             });
-
-
     });
     // Not used
 
     app.post("/api/joinProject", function (req, res) {
-
         var newObj = req.body
 
         var useraddedId = req.user.id;
 
         newObj.UserId = useraddedId;
-        
+
         db.User_project.create(newObj).then(function (dbProjId) {
 
         });
     });
-}
+};
