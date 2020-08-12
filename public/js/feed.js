@@ -2,11 +2,8 @@
 
 $(document).on("click", ".projJoinBtn", function () {
 
-    console.log("Joining Project");
     
     var ProjectId = $(this).attr("id");
-
-    console.log(ProjectId);
 
 
     var PostRes = {
@@ -20,8 +17,7 @@ $(document).on("click", ".projJoinBtn", function () {
         type: "POST",
         data: PostRes,
         success: function(result){
-            console.log("In success api post to add user to project");
-            console.log(result);
+
 
             // Only want to hide if the Join was successful 
             // $(this).addClass("is-hidden");
@@ -46,12 +42,6 @@ $(document).ready(function () {
 
         currentUserId = result.currentUserId;
 
-
-        console.log("In Project All GET AJAX Call");
-
-        console.log(project);
-
-        console.log(currentUserId);
 
         const createBox = () => {
 
@@ -100,13 +90,9 @@ $(document).ready(function () {
 
                 // If the project owner exists
                 if(id === currentUserId){
-                    console.log("Current User Exist");
 
                     projectOwner = 1;
 
-                    console.log(projectOwner);
-
-                    // Only create the button if not the current user
                     
                 }
                 
@@ -125,11 +111,9 @@ $(document).ready(function () {
 
 
             if(projectOwner === 1){
-                console.log("Not append the join")
                 content.append(projName, projDesc, projLang, projPart);
             }
             else{
-                console.log("Append the Join");
                 console.log(projectOwner);
                 content.append(projName, projDesc, projLang, projPart, projJoin);
             }
