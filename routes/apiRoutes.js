@@ -57,10 +57,14 @@ module.exports = function (app, passport) {
 
     // We need to be logged in to get the Users
     // This route might need to be moved to the HTML route
-    app.get("/api/users/", isLoggedIn, function (req, res) {
+    app.get("/api/users/:id", isLoggedIn, function (req, res) {
         
-    
-        db.User.findAll({ where: { id: req.body.id } }).then(function (dbUsers) {
+        var userId = req.params.id;
+
+        console.log("In get users");
+
+
+        db.User.findAll({ where: { id: userId} }).then(function (dbUsers) {
             res.json(dbUsers[0].dataValues.firstname);
         });
     });
@@ -206,6 +210,13 @@ module.exports = function (app, passport) {
 
     // All the projects can be accessed if we are logged in or not
     app.get("/api/projectAll", function (req, res) {
+        
+        console.log("In GET API call Project All");
+
+        var currentUserId = req.user.id;
+
+
+        // Here we briging back the users that own the projects as well
         db.Project.findAll({
             include: [{
                 model: db.Project_language
@@ -213,8 +224,12 @@ module.exports = function (app, passport) {
                 model: db.User_project
             }]
         }).then(function (dbProject) {
-            res.json(dbProject);
+
+
+            // The current User Id will be used to validate who is the owner of the project
+            res.json({response: dbProject, currentUserId: currentUserId});
         });
+
     });
 
 
@@ -358,21 +373,22 @@ module.exports = function (app, passport) {
     // });
 
 
+    // Validate if the user is Logged In to JOIN
+    app.post("/api/joinProject", isLoggedIn, function (req, res) {
 
-//     app.post("/api/joinProject", function (req, res) {
 
-//         var newObj = req.body
+        var newObj = req.body
 
-//         var useraddedId = req.user.id;
+        var useraddedId = req.user.id;
 
-//         newObj.UserId = useraddedId;
-
+        newObj.UserId = useraddedId;
    
+        db.User_project.create(newObj).then(function (dbProjId) {
+            
+            res.json(dbProjId);
 
-//         db.User_project.create(newObj).then(function (dbProjId) {
-         
-//         });
-//     });
+        });
+    });
 
 }
 
