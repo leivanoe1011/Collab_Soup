@@ -1,13 +1,53 @@
+
+
+$(document).on("click", ".projJoinBtn", function () {
+
+    
+    var ProjectId = $(this).attr("id");
+
+
+    var PostRes = {
+        ProjectId: ProjectId,
+        UserId: " ",
+        project_owner: 0
+    };
+
+    $.ajax({
+        url: "/api/joinProject",
+        type: "POST",
+        data: PostRes,
+        success: function(result){
+
+
+            // Only want to hide if the Join was successful 
+            // $(this).addClass("is-hidden");
+
+            location.reload();
+
+        }
+    })
+
+});
+
+
 $(document).ready(function () {
     // FEED PAGE
     var feednum = 1;
 
-    $.get("/api/projectAll", function (response) {
-        project = response;
 
-        console.log(project);
+
+    $.get("/api/projectAll", function (result) {
+       
+        project = result.response;
+
+        currentUserId = result.currentUserId;
+
+
 
         const createBox = () => {
+
+            // i gets created in the "for" loop that calls the 
+            // the create box function
             var projNum = project[i].User_projects[0].ProjectId;
 
             feednum++
@@ -22,12 +62,13 @@ $(document).ready(function () {
             var projPart = $("<p>");
             var projJoin = $("<a class='button is-danger projJoinBtn' id='" + projNum + "'>");
 
-            projJoin.html("Join");
 
             projName.html('Project Name: ' + project[i].project_name);
             projDesc.html('Project description: ' + project[i].project_description);
             projLang.html('Project language(s): ');
             projPart.html('Project participant(s): ');
+
+            projJoin.html("Join");
 
 
             for (var j = 0; j < project[i].Project_languages.length; j++) {
@@ -45,15 +86,33 @@ $(document).ready(function () {
             column.append(box);
             feedDiv.append(column);
 
-            var userIdArr = [];
+            var projectOwner = 0;
 
             for (var o = 0; o < project[i].User_projects.length; o++) {
-                var userIdObj = {
-                    id: userIdArr
-                };
 
-                userIdArr.push(project[i].User_projects[o].UserId);
-            };
+                var id = project[i].User_projects[o].UserId
+
+                // If the project owner exists
+                if(id === currentUserId){
+
+                    projectOwner = 1;
+
+                    
+                }
+                
+                $.ajax({
+                    url: `/api/users/${id}`,
+                    type: "GET",
+                    success: function(response){
+                        console.log(response);
+
+                        projPart.append(response + " ");
+                    }
+                });
+
+            }
+
+
 
             $.post("/api/users/", userIdObj, function (response) {
                 for (var t = 0; t < response.length; t++) {
@@ -64,6 +123,18 @@ $(document).ready(function () {
                     };
                 };
             });
+
+            if(projectOwner === 1){
+                content.append(projName, projDesc, projLang, projPart);
+            }
+            else{
+                console.log(projectOwner);
+                content.append(projName, projDesc, projLang, projPart, projJoin);
+            }
+
+            box.append(content);
+            column.append(box);
+            feedDiv.append(column);
 
         };
 
@@ -77,15 +148,5 @@ $(document).ready(function () {
         };
     });
 
-    $(document).on("click", ".projJoinBtn", function () {
-        var ProjectId = $(this).attr("id");
 
-        var PostRes = {
-            ProjectId: ProjectId
-        };
-
-        $.post("/api/joinProject", PostRes);
-
-        $(this).addClass("is-hidden");
-    });
 });
