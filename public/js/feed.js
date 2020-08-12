@@ -32,8 +32,8 @@ $(document).on("click", ".projJoinBtn", function () {
 
 $(document).ready(function () {
     // FEED PAGE
-
     var feednum = 1;
+
 
 
     $.get("/api/projectAll", function (result) {
@@ -41,6 +41,7 @@ $(document).ready(function () {
         project = result.response;
 
         currentUserId = result.currentUserId;
+
 
 
         const createBox = () => {
@@ -52,20 +53,20 @@ $(document).ready(function () {
             feednum++
 
             const feedDiv = $("#feedContent");
-            let column = $("<div class='column is-half'>");
+            let column = $("<div class='column is-half is-offset-1-mobile is-four-fifths-mobile'>");
             let box = $("<div class='box' id='feednum" + feednum + "'>");
             let content = $("<div class='content'>");
             let projName = $("<p>");
             let projDesc = $("<p>");
             let projLang = $("<p>");
-            let projPart = $("<p>");
-            var projJoin = $("<a class='button is-danger projJoinBtn' id='" + projNum + "'>")
+            var projPart = $("<p>");
+            var projJoin = $("<a class='button is-danger projJoinBtn' id='" + projNum + "'>");
 
 
             projName.html('Project Name: ' + project[i].project_name);
             projDesc.html('Project description: ' + project[i].project_description);
             projLang.html('Project language(s): ');
-            projPart.html('Project participant(s): ')
+            projPart.html('Project participant(s): ');
 
             projJoin.html("Join");
 
@@ -73,14 +74,17 @@ $(document).ready(function () {
             for (var j = 0; j < project[i].Project_languages.length; j++) {
                 projLangLength = project[i].Project_languages.length;
 
-
                 if (j + 1 === projLangLength) {
                     projLang.append(project[i].Project_languages[j].language_name);
                 } else {
                     projLang.append(project[i].Project_languages[j].language_name + ", ");
-                }
+                };
             };
 
+            content.append(projName, projDesc, projLang, projPart, projJoin);
+            box.append(content);
+            column.append(box);
+            feedDiv.append(column);
 
             var projectOwner = 0;
 
@@ -110,6 +114,16 @@ $(document).ready(function () {
 
 
 
+            $.post("/api/users/", userIdObj, function (response) {
+                for (var t = 0; t < response.length; t++) {
+                    if (t + 1 === response.length) {
+                        projPart.append("<a href='/profile/" + response[t].id + "'>" + response[t].name + "</a>");
+                    } else {
+                        projPart.append("<a href='/profile/" + response[t].id + "'>" + response[t].name + ", </a>");
+                    };
+                };
+            });
+
             if(projectOwner === 1){
                 content.append(projName, projDesc, projLang, projPart);
             }
@@ -121,6 +135,7 @@ $(document).ready(function () {
             box.append(content);
             column.append(box);
             feedDiv.append(column);
+
         };
 
         for (var i = 0; i < project.length; i++) {
@@ -133,5 +148,5 @@ $(document).ready(function () {
         };
     });
 
-    
+
 });

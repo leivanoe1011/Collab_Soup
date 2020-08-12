@@ -1,4 +1,3 @@
-
 var db = require("../models");
 
 // Flash was passed to App in the server js under app.use();
@@ -12,33 +11,27 @@ module.exports = function (app, passport) {
   // since we are using Modals
   // app.get('/signup', authController.signup);
   // app.get('/signin', authController.signin);
-
-
   function isLoggedIn(req, res, next) {
 
     if (req.isAuthenticated()) return next();
 
     // If not authenticated, then redirect to the signin page
     res.redirect("/signin");
-  }
+  };
 
-  
   app.get("/signin", (req, res, next) => {
     const err = req.flash().error || [];
-    res.render("login", {err});
+    res.render("login", { err });
   });
-
 
   // The initial Signin will go here first. 
   // If it fails, then it will go to the GET route above
   app.post("/signin", passport.authenticate("local-signin", {
-      failureFlash: true, 
-      failureRedirect: "/signin"
-    }), (req, res, next) => {
-      res.redirect("/profile");
+    failureFlash: true,
+    failureRedirect: "/signin"
+  }), (req, res, next) => {
+    res.redirect("/profile");
   });
-
-
 
   app.post('/creation', passport.authenticate('local-creation', {
 
@@ -47,31 +40,29 @@ module.exports = function (app, passport) {
 
       failureRedirect: '/creation'
 
+<<<<<<< HEAD
     }
 
   ));
 
+=======
+  }));
+>>>>>>> 299bbf4c29048e7cb1970c153fb61e65118ff928
 
   // make sure the page can only be accessed when a user is logged into the session
   // app.get('/dashboard', isLoggedIn, authController.dashboard);
   app.get('/profile', isLoggedIn, authController.profile);
 
+  app.get('/profile/:id', authController.profileId);
+
   app.get('/logout', authController.logout);
 
-
   // Load index page
-  app.get("/", function (req, res) {
-    res.render("index", {
-      msg: "Welcome!",
-    });
-  });
-
+  app.get("/", function (req, res) { res.render("index"); });
 
   app.get("/creation", authController.creation);
 
-
   app.get("/about", authController.about);
-
 
   app.get("/feed", authController.feed);
 };
