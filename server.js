@@ -1,5 +1,3 @@
-
-
 var express = require("express");
 
 var exphbs = require("express-handlebars");
@@ -7,9 +5,6 @@ var exphbs = require("express-handlebars");
 // Models
 // Here, we are importing the models, and then calling the Sequelize sync function.
 var models = require("./models");
-
-
-
 
 // Passport
 // import the passport module and the express-session, 
@@ -19,7 +14,6 @@ var passport = require("passport");
 // passport has to save a user ID in the session 
 // and it uses this to manage retrieving the user details when needed
 var session = require("express-session");
-
 
 var flash = require("connect-flash");
 
@@ -34,9 +28,7 @@ var bodyParser = require('body-parser');
 var env = require('dotenv').config();
 // var env = require("dotenv").load();
 
-
 var app = express();
-
 
 var PORT = process.env.PORT || 3000;
 
@@ -45,15 +37,12 @@ var PORT = process.env.PORT || 3000;
 // to access form inputs
 app.use(express.urlencoded({ extended: true }));
 
-
 // Middleware below allows the app to parse JSON
 app.use(express.json());
-
 
 // The Middleware below will begin reading the files from the 
 // Public Directory
 app.use(express.static("public"));
-
 
 // Handlebars
 app.engine(
@@ -65,7 +54,6 @@ app.engine(
 
 app.set("view engine", "handlebars");
 
-
 // express session and passport session add them both as middleware.
 // session secret
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
@@ -76,15 +64,11 @@ app.use(passport.session()); // persistent login sessions\
 
 app.use(flash());
 
-app.use(flash());
-
-
 // Routes
 // Need to pass passport to access session Ids
 require("./routes/htmlRoutes")(app, passport);
 
 require("./routes/apiRoutes")(app, passport);
-
 
 //load passport strategies
 // models.user ... user will mirror the lowercase "user" defined in the user model
@@ -107,21 +91,10 @@ var syncOptions = { force: false };
 // }
 
 // Starting the server, syncing our models ------------------------------------/
-models.sequelize.sync(syncOptions).then(function () {
+models.sequelize.sync().then(function () {
   app.listen(PORT, function () {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
+    console.log("listening on port: " + PORT);
   });
 });
 
 module.exports = app;
-
-
-
-
-
-
-
