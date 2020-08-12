@@ -50,7 +50,7 @@ module.exports = function (app, passport) {
 
         db.User_language.create(newLanguage).then(function (dbLang) {
             res.json(dbLang);
-        })
+        });
 
     });
 
@@ -213,7 +213,8 @@ module.exports = function (app, passport) {
         
         console.log("In GET API call Project All");
 
-        var currentUserId = req.user.id;
+
+        var currentUserId = 0;
 
 
         // Here we briging back the users that own the projects as well
