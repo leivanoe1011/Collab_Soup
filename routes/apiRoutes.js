@@ -317,12 +317,18 @@ module.exports = function (app, passport) {
     // Not used
 
     app.post("/api/joinProject", function (req, res) {
+
         var newObj = req.body
+        var useraddedId = 0;
 
-        var useraddedId = req.user.id;
+        if (req.hasOwnProperty("user") === true) {
+            useraddedId = req.user.id
 
-        newObj.UserId = useraddedId;
+            newObj.UserId = useraddedId;
 
-        db.User_project.create(newObj).then(function (dbProjId) { });
+            db.User_project.create(newObj).then(function (dbProjId) { });
+        } else {
+            res.render("login")
+        };
     });
 };

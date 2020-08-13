@@ -84,7 +84,9 @@ $(document).ready(function () {
             ProjectId: ProjectId
         };
 
-        $.post("/api/joinProject", PostRes);
+        $.post("/api/joinProject", PostRes, function () {
+            console.log("Here lies the post proj button here we will continue a story for noe because he wants to be descriptive")
+        });
 
         $(this).addClass("is-hidden");
     });

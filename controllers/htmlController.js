@@ -8,6 +8,23 @@ exports.signin = function (req, res) {
     res.render("profile");
 };
 
+exports.joinProject = function (req, res) {
+    var newObj = req.body
+    var useraddedId = 0;
+
+
+    if (req.hasOwnProperty("user") === true) {
+        useraddedId = req.user.id
+
+        newObj.UserId = useraddedId;
+
+        db.User_project.create(newObj).then(function (dbProjId) { });
+    } else {
+        res.render("login");
+    };
+};
+
+
 exports.creation = function (req, res) {
     res.render("creation");
 };
