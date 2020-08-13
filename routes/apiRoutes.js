@@ -79,7 +79,7 @@ module.exports = function (app, passport) {
 
         console.log("In old users");
 
-        
+
         var newArr = [];
         db.User.findAll({ where: { id: req.body.id } }).then(function (dbUsers) {
             for (var i = 0; i < dbUsers.length; i++) {
@@ -199,6 +199,7 @@ module.exports = function (app, passport) {
                 res.json(result);
             });
     });
+    
 
     app.get("/api/userProject/:id", function (req, res) {
         var profileId = req.params.id;
