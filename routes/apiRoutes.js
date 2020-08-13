@@ -152,7 +152,6 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.get("/api/userProject/", function (req, res) {
 
     // This GET can be accessed only when logged in
     app.get("/api/userProject/", isLoggedIn, function(req, res){
@@ -277,6 +276,25 @@ module.exports = function (app, passport) {
             });
 
     });
+    
+
+     // Validate if the user is Logged In to JOIN
+     app.post("/api/joinProject", isLoggedIn, function (req, res) {
+
+
+        var newObj = req.body
+
+        var useraddedId = req.user.id;
+
+        newObj.UserId = useraddedId;
+   
+        db.User_project.create(newObj).then(function (dbProjId) {
+            
+            res.json(dbProjId);
+
+        });
+    });
+
 
     // get all projects by User
     // Not used
@@ -355,41 +373,6 @@ module.exports = function (app, passport) {
 
 
 
-    // Not used
-
-
-    // This ROUTE is no longer needed since Passport creates the user
-    // app.post("/api/user", function (req, res) {
-
-
-    //     var newUser = req.body;
-
-    //     db.User.create(newUser).then(function (dbUser) {
-    //         res.json(dbUser);
-    //     })
-    // });
-
-
-    // Validate if the user is Logged In to JOIN
-    app.post("/api/joinProject", isLoggedIn, function (req, res) {
-
-
-        var newObj = req.body
-
-        var useraddedId = req.user.id;
-
-        newObj.UserId = useraddedId;
-   
-        db.User_project.create(newObj).then(function (dbProjId) {
-            
-            res.json(dbProjId);
-
-        });
-    });
-
 }
 
 
-        });
-    });
-};

@@ -33,6 +33,7 @@ module.exports = function (app, passport) {
     res.redirect("/profile");
   });
 
+  
   app.post('/creation', passport.authenticate('local-creation', {
 
       // successRedirect: '/dashboard',
@@ -40,14 +41,7 @@ module.exports = function (app, passport) {
 
       failureRedirect: '/creation'
 
-<<<<<<< HEAD
-    }
-
-  ));
-
-=======
   }));
->>>>>>> 299bbf4c29048e7cb1970c153fb61e65118ff928
 
   // make sure the page can only be accessed when a user is logged into the session
   // app.get('/dashboard', isLoggedIn, authController.dashboard);
