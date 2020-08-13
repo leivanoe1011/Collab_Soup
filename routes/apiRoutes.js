@@ -189,7 +189,7 @@ module.exports = function (app, passport) {
 
     app.post("/api/users/", function (req, res) {
         var newArr = [];
-
+        console.log("here")
         db.User.findAll({ where: { id: req.body.id } }).then(function (dbUsers) {
             for (var i = 0; i < dbUsers.length; i++) {
 
@@ -311,8 +311,9 @@ module.exports = function (app, passport) {
                 // End of For Loop on dbUserProject
                 res.json(result);
 
-            });
-    });
+            })
+    }
+    );
     // Not used
 
     app.post("/api/joinProject", function (req, res) {
@@ -322,8 +323,6 @@ module.exports = function (app, passport) {
 
         newObj.UserId = useraddedId;
 
-        db.User_project.create(newObj).then(function (dbProjId) {
-
-        });
+        db.User_project.create(newObj).then(function (dbProjId) { });
     });
 };
