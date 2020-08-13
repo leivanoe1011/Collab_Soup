@@ -75,11 +75,8 @@ module.exports = function (app, passport) {
     });
 
 
+
     app.post("/api/users/", function (req, res) {
-
-        console.log("In old users");
-
-
         var newArr = [];
         db.User.findAll({ where: { id: req.body.id } }).then(function (dbUsers) {
             for (var i = 0; i < dbUsers.length; i++) {
@@ -93,6 +90,7 @@ module.exports = function (app, passport) {
             res.json(newArr);
         });
     });
+
 
     // User is only able to create a project when logged in
     // This should be an HTML route
@@ -199,7 +197,7 @@ module.exports = function (app, passport) {
                 res.json(result);
             });
     });
-    
+
 
     app.get("/api/userProject/:id", function (req, res) {
         var profileId = req.params.id;
@@ -257,7 +255,7 @@ module.exports = function (app, passport) {
         
         console.log("In GET API call Project All");
 
-        
+        // Bring back the user id
         var currentUserId = 0;
 
 
@@ -271,9 +269,10 @@ module.exports = function (app, passport) {
             }]
         }).then(function (dbProject) {
 
+            console.log(dbProject)
 
             // The current User Id will be used to validate who is the owner of the project
-            res.json({response: dbProject, currentUserId: currentUserId});
+            res.json(dbProject);
         });
 
     });
