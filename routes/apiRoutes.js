@@ -53,7 +53,8 @@ module.exports = function (app, passport) {
 
     // We need to be logged in to get the Users
     // This route might need to be moved to the HTML route
-    app.get("/api/users/:id", isLoggedIn, function (req, res) {
+    // app.get("/api/users/:id", isLoggedIn, function (req, res) {
+    app.get("/api/users/:id", function (req, res) {
         
         var userId = req.params.id;
 
@@ -61,10 +62,37 @@ module.exports = function (app, passport) {
 
 
         db.User.findAll({ where: { id: userId} }).then(function (dbUsers) {
-            res.json(dbUsers[0].dataValues.firstname);
+            
+            var result = dbUsers[0].dataValues;
+
+            console.log(result);
+            var userObj = {}
+            userObj["name"] = result.firstname;
+            userObj["id"] = result.id;
+
+            res.json(userObj);
         });
     });
 
+
+    app.post("/api/users/", function (req, res) {
+
+        console.log("In old users");
+
+
+        var newArr = [];
+        db.User.findAll({ where: { id: req.body.id } }).then(function (dbUsers) {
+            for (var i = 0; i < dbUsers.length; i++) {
+                var dbUsersIdAndName = {
+                    name: dbUsers[i].dataValues.firstname,
+                    id: dbUsers[i].dataValues.id
+                };
+                newArr.push(dbUsersIdAndName);
+            };
+        }).then(() => {
+            res.json(newArr);
+        });
+    });
 
     // User is only able to create a project when logged in
     // This should be an HTML route
@@ -152,7 +180,6 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.get("/api/userProject/", function (req, res) {
 
     // This GET can be accessed only when logged in
     app.get("/api/userProject/", isLoggedIn, function(req, res){
@@ -172,6 +199,7 @@ module.exports = function (app, passport) {
                 res.json(result);
             });
     });
+    
 
     app.get("/api/userProject/:id", function (req, res) {
         var profileId = req.params.id;
@@ -229,7 +257,8 @@ module.exports = function (app, passport) {
         
         console.log("In GET API call Project All");
 
-        var currentUserId = req.user.id;
+        
+        var currentUserId = 0;
 
 
         // Here we briging back the users that own the projects as well
@@ -276,6 +305,25 @@ module.exports = function (app, passport) {
             });
 
     });
+
+
+     // Validate if the user is Logged In to JOIN
+     app.post("/api/joinProject", isLoggedIn, function (req, res) {
+
+
+        var newObj = req.body
+
+        var useraddedId = req.user.id;
+
+        newObj.UserId = useraddedId;
+   
+        db.User_project.create(newObj).then(function (dbProjId) {
+            
+            res.json(dbProjId);
+
+        });
+    });
+
 
     // get all projects by User
     // Not used
@@ -354,41 +402,6 @@ module.exports = function (app, passport) {
 
 
 
-    // Not used
-
-
-    // This ROUTE is no longer needed since Passport creates the user
-    // app.post("/api/user", function (req, res) {
-
-
-    //     var newUser = req.body;
-
-    //     db.User.create(newUser).then(function (dbUser) {
-    //         res.json(dbUser);
-    //     })
-    // });
-
-
-    // Validate if the user is Logged In to JOIN
-    app.post("/api/joinProject", isLoggedIn, function (req, res) {
-
-
-        var newObj = req.body
-
-        var useraddedId = req.user.id;
-
-        newObj.UserId = useraddedId;
-   
-        db.User_project.create(newObj).then(function (dbProjId) {
-            
-            res.json(dbProjId);
-
-        });
-    });
-
 }
 
 
-        });
-    });
-};

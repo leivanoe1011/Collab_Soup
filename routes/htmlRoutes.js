@@ -33,12 +33,13 @@ module.exports = function (app, passport) {
     res.redirect("/profile");
   });
 
+  
   app.post('/creation', passport.authenticate('local-creation', {
 
-    // successRedirect: '/dashboard',
-    successRedirect: '/profile',
+      // successRedirect: '/dashboard',
+      successRedirect: '/profile',
 
-    failureRedirect: '/creation'
+      failureRedirect: '/creation'
 
   }));
 
