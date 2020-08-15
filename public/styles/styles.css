@@ -19,11 +19,11 @@ html, body{
   position: relative;
 }
 
-/* #landingCon{
+#landingCon{
   position: absolute;
   top: 25%;
   left: 25%;
-} */
+}
 
 #createCon {
   margin-top: 10px;
@@ -43,7 +43,7 @@ html, body{
   font-size: 50px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 500px) {
   html, body{
     overflow-x: hidden;
     position: absolute;
