@@ -19,11 +19,11 @@ html, body{
   position: relative;
 }
 
-#landingCon{
+/* #landingCon{
   position: absolute;
   top: 25%;
   left: 25%;
-}
+} */
 
 #createCon {
   margin-top: 10px;
