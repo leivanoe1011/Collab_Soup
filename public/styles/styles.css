@@ -19,10 +19,8 @@ html, body{
   position: relative;
 }
 
-#landingCon{
-  position: absolute;
-  top: 25%;
-  left: 25%;
+.landingCon{
+ margin-top: 10px;
 }
 
 #createCon {
