@@ -1,8 +1,11 @@
+
 $(document).ready(function () {
     // FEED PAGE
     var feednum = 1;
 
     $.get("/api/projectAll", function (response) {
+
+        // Map the object correctly
         project = response;
 
         console.log(project);
@@ -68,7 +71,6 @@ $(document).ready(function () {
         };
 
         for (var i = 0; i < project.length; i++) {
-            console.log("In for loop after getting all the projects")
             createBox();
         };
 
@@ -85,11 +87,13 @@ $(document).ready(function () {
             ProjectId: ProjectId
         };
 
+
+        // Redirect if user is not logged in
+        // If user is logged in, then refresh the Project 
+        // Participant list with the new name
         $.post("/api/joinProject", PostRes);
 
         $(this).addClass("is-hidden");
     });
 });
-
-
 
