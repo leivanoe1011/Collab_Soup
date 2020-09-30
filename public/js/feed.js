@@ -68,6 +68,7 @@ $(document).ready(function () {
         };
 
         for (var i = 0; i < project.length; i++) {
+            console.log("In for loop after getting all the projects")
             createBox();
         };
 
@@ -91,3 +92,6 @@ $(document).ready(function () {
         $(this).addClass("is-hidden");
     });
 });
+
+
+
