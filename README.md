@@ -30,4 +30,6 @@ Collab soup is a website dedicated to serving the developer community. We have p
 
 # Screenshots:
 
-![profilePic](./public/images/collabSoupPic.png)
+<div align="center">
+<img src="./public/images/collabSoupPic.PNG" alt="noodles" width="800" height="500"/>
+</div>
